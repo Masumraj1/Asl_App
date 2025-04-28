@@ -9,6 +9,7 @@ import 'package:recipe_app/app/view/common_widgets/custom_button/custom_button.d
 import 'package:recipe_app/app/view/common_widgets/custom_from_card/custom_from_card.dart';
 import 'package:recipe_app/app/view/common_widgets/custom_rich_text/custom_rich_text.dart';
 import 'package:recipe_app/app/view/common_widgets/custom_text/custom_text.dart';
+import 'package:recipe_app/app/view/common_widgets/remember_and_forget_password/remember_and_forget_password.dart';
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
@@ -25,20 +26,7 @@ class SignInScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomText(
-                font: CustomFont.poppins,
-                text: AppStrings.signIn,
-                fontWeight: FontWeight.w500,
-                color: Colors.black,
-                fontSize: 30.sp,
-              ),
-              CustomText(
-                font: CustomFont.inter,
-                text: AppStrings.letsSaveEnvironment,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-                fontSize: 14.sp,
-              ),
+              _buildHeaderTexts(),
 
               SizedBox(
                 height: 120.h,
@@ -60,45 +48,9 @@ class SignInScreen extends StatelessWidget {
                   controller: TextEditingController(),
                   validator: (v) {}),
 
-              ///: <<<<<<======🗄️🗄️🗄️🗄️🗄️🗄️💡💡Forgot Password💡💡🗄️🗄️🗄️🗄️🗄️🗄️🗄️>>>>>>>>===========
+              ///: <<<<<<======🗄️🗄️🗄️🗄️🗄️🗄️💡💡RememberMeAndForgotPasswordRow💡💡🗄️🗄️🗄️🗄️🗄️🗄️🗄️>>>>>>>>===========
 
-              Obx(() {
-                return Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Checkbox(
-                      value: authController.isRemember.value,
-                      checkColor: AppColors.white,
-                      activeColor: AppColors.emeraldGreen,
-                      onChanged: (value) {
-                        authController.isRemember.value = value ?? false;
-                        debugPrint(
-                            "Checkbox clicked, Remember value: ${authController.isRemember.value}");
-                      },
-                    ),
-                    CustomText(
-                      font: CustomFont.poppins,
-                      top: 12.h,
-                      text: AppStrings.rememberMe,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.black,
-                      bottom: 15.h,
-                    ),
-                    Expanded(
-                      child: CustomText(
-                        font: CustomFont.inter,
-                        top: 12.h,
-                        text: AppStrings.forgottenPassword,
-                        // fontSize: 14.sp,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.emeraldGreen,
-                        bottom: 15.h,
-                      ),
-                    ),
-                  ],
-                );
-              }),
+              const RememberMeAndForgotPasswordRow(),
 
               SizedBox(
                 height: 52.h,
@@ -111,6 +63,7 @@ class SignInScreen extends StatelessWidget {
                 onTap: () {},
                 textColor: AppColors.white,
               ),
+
               SizedBox(
                 height: 42.h,
               ),
@@ -128,24 +81,8 @@ class SignInScreen extends StatelessWidget {
               SizedBox(
                 height: 32.h,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Assets.images.google.image(),
-                  SizedBox(
-                    width: 18.h,
-                  ),
-                  Assets.images.facebook.image(),
-                  SizedBox(
-                    width: 18.h,
-                  ),
-                  Assets.images.microsoft.image(),
-                  SizedBox(
-                    width: 18.h,
-                  ),
-                  Assets.images.apple.image(),
-                ],
-              ),
+              _buildSocialLoginIcons(),
+
               SizedBox(
                 height: 99.h,
               ),
@@ -172,6 +109,43 @@ class SignInScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildHeaderTexts() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CustomText(
+          font: CustomFont.poppins,
+          text: AppStrings.signIn,
+          fontWeight: FontWeight.w500,
+          color: Colors.black,
+          fontSize: 30.sp,
+        ),
+        CustomText(
+          font: CustomFont.inter,
+          text: AppStrings.letsSaveEnvironment,
+          fontWeight: FontWeight.w400,
+          color: Colors.black,
+          fontSize: 14.sp,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSocialLoginIcons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Assets.images.google.image(),
+        SizedBox(width: 18.w),
+        Assets.images.facebook.image(),
+        SizedBox(width: 18.w),
+        Assets.images.microsoft.image(),
+        SizedBox(width: 18.w),
+        Assets.images.apple.image(),
+      ],
     );
   }
 }
