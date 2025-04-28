@@ -50,6 +50,7 @@ class CustomFromCard extends StatelessWidget {
           inputTextStyle: const TextStyle(color: AppColors.black),
           keyboardType: isPassword ? TextInputType.visiblePassword : TextInputType.text,
         ),
+        SizedBox(height: 16.h,)
       ],
     );
   }

@@ -9,9 +9,11 @@ class AppStrings {
   static const email = "Email";
   static const userExampleEmail = "user@example.com";
   static const password = "Password";
+  static const enterYourPassword = "Enter Your Password";
+  static const forgottenPassword = "Forgotten Password";
   static const rememberMe = "Remember me";
   static const orSignIn = "Or Sign In with";
-  static const dontHaveAnAccount = "Don’t have an account?";
+  static const dontHaveAnAccount = "Don’t have an account? ";
   static const signUp = "Sign Up";
   static const name = "Name";
   static const phoneNumber = "Phone Number";

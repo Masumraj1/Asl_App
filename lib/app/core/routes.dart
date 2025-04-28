@@ -26,7 +26,7 @@ class AppRouter {
           name: RoutePath.signInScreen,
           path: RoutePath.signInScreen.addBasePath,
           pageBuilder: (context, state) => _buildPageWithAnimation(
-            child:  const SignInScreen(),
+            child:   SignInScreen(),
             state: state,
           ),
         ),

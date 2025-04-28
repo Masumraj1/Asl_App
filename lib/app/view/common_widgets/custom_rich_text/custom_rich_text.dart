@@ -44,9 +44,9 @@ class CustomRichText extends StatelessWidget {
             TextSpan(
               text: secondText,
               style: secondTextStyle ??
-                  const TextStyle(
+                   TextStyle(
                     color: AppColors.emeraldGreen,
-                    fontSize: 14,
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w700,
                   ),
               recognizer: TapGestureRecognizer()..onTap = onTapAction,
