@@ -15,14 +15,31 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/apple.svg
+  SvgGenImage get apple => const SvgGenImage('assets/icons/apple.svg');
+
   /// File path: assets/icons/eye.svg
   SvgGenImage get eye => const SvgGenImage('assets/icons/eye.svg');
 
   /// File path: assets/icons/eye_off.svg
   SvgGenImage get eyeOff => const SvgGenImage('assets/icons/eye_off.svg');
 
+  /// File path: assets/icons/facebook.svg
+  SvgGenImage get facebook => const SvgGenImage('assets/icons/facebook.svg');
+
+  /// File path: assets/icons/google.svg
+  SvgGenImage get google => const SvgGenImage('assets/icons/google.svg');
+
+  /// File path: assets/icons/ispassword.svg
+  SvgGenImage get ispassword =>
+      const SvgGenImage('assets/icons/ispassword.svg');
+
+  /// File path: assets/icons/microsoft.svg
+  SvgGenImage get microsoft => const SvgGenImage('assets/icons/microsoft.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values => [eye, eyeOff];
+  List<SvgGenImage> get values =>
+      [apple, eye, eyeOff, facebook, google, ispassword, microsoft];
 }
 
 class $AssetsImagesGen {
