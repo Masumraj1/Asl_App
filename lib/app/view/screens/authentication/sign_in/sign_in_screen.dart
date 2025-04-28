@@ -4,12 +4,14 @@ import 'package:get/get.dart';
 import 'package:recipe_app/app/global/controller/auth_controller.dart';
 import 'package:recipe_app/app/utils/app_colors/app_colors.dart';
 import 'package:recipe_app/app/utils/app_strings/app_strings.dart';
-import 'package:recipe_app/app/utils/custom_assets/assets.gen.dart';
 import 'package:recipe_app/app/view/common_widgets/custom_button/custom_button.dart';
 import 'package:recipe_app/app/view/common_widgets/custom_from_card/custom_from_card.dart';
 import 'package:recipe_app/app/view/common_widgets/custom_rich_text/custom_rich_text.dart';
 import 'package:recipe_app/app/view/common_widgets/custom_text/custom_text.dart';
 import 'package:recipe_app/app/view/common_widgets/remember_and_forget_password/remember_and_forget_password.dart';
+import 'package:recipe_app/app/view/screens/authentication/sign_in/inner_widgets/sociel_icon_row.dart';
+
+import 'inner_widgets/header_text.dart';
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
@@ -26,7 +28,7 @@ class SignInScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildHeaderTexts(),
+              const HeaderText(),
 
               SizedBox(
                 height: 120.h,
@@ -81,7 +83,7 @@ class SignInScreen extends StatelessWidget {
               SizedBox(
                 height: 32.h,
               ),
-              _buildSocialLoginIcons(),
+              const SocialLoginIconsRow(),
 
               SizedBox(
                 height: 99.h,
@@ -109,43 +111,6 @@ class SignInScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildHeaderTexts() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        CustomText(
-          font: CustomFont.poppins,
-          text: AppStrings.signIn,
-          fontWeight: FontWeight.w500,
-          color: Colors.black,
-          fontSize: 30.sp,
-        ),
-        CustomText(
-          font: CustomFont.inter,
-          text: AppStrings.letsSaveEnvironment,
-          fontWeight: FontWeight.w400,
-          color: Colors.black,
-          fontSize: 14.sp,
-        ),
-      ],
-    );
-  }
-
-  Widget _buildSocialLoginIcons() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Assets.images.google.image(),
-        SizedBox(width: 18.w),
-        Assets.images.facebook.image(),
-        SizedBox(width: 18.w),
-        Assets.images.microsoft.image(),
-        SizedBox(width: 18.w),
-        Assets.images.apple.image(),
-      ],
     );
   }
 }
