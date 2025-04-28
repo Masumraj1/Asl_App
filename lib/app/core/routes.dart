@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:recipe_app/app/global/helper/extension/extension.dart';
 import 'package:recipe_app/app/view/screens/splash/splash_screen.dart';
+import '../view/screens/authentication/sign_in/sign_in_screen.dart';
 import 'route_path.dart';
 
 class AppRouter {
@@ -16,6 +17,16 @@ class AppRouter {
           path: RoutePath.splashScreen.addBasePath,
           pageBuilder: (context, state) => _buildPageWithAnimation(
             child:  SplashScreen(),
+            state: state,
+          ),
+        ),
+
+        ///======================= Auth Route =======================
+        GoRoute(
+          name: RoutePath.signInScreen,
+          path: RoutePath.signInScreen.addBasePath,
+          pageBuilder: (context, state) => _buildPageWithAnimation(
+            child:  const SignInScreen(),
             state: state,
           ),
         ),
