@@ -10,6 +10,7 @@ class AppStrings {
   static const userExampleEmail = "user@example.com";
   static const password = "Password";
   static const enterYourPassword = "Enter Your Password";
+  static const enterYourName = "Enter Your Name";
   static const forgottenPassword = "Forgotten Password";
   static const rememberMe = "Remember me";
   static const orSignIn = "Or Sign In with";
@@ -19,7 +20,7 @@ class AppStrings {
   static const phoneNumber = "Phone Number";
   static const confirmPassword = "Confirm Password";
   static const orSignUp = "Or Sign Up with";
-  static const alreadyHaveAnAccount = "Already have an account?";
+  static const alreadyHaveAnAccount = "Already have an account? ";
 
 
 }

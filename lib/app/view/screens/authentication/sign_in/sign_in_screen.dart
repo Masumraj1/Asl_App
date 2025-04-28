@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:recipe_app/app/core/route_path.dart';
+import 'package:recipe_app/app/core/routes.dart';
 import 'package:recipe_app/app/global/controller/auth_controller.dart';
 import 'package:recipe_app/app/utils/app_colors/app_colors.dart';
 import 'package:recipe_app/app/utils/app_strings/app_strings.dart';
+import 'package:recipe_app/app/utils/custom_assets/assets.gen.dart';
 import 'package:recipe_app/app/view/common_widgets/custom_button/custom_button.dart';
 import 'package:recipe_app/app/view/common_widgets/custom_from_card/custom_from_card.dart';
 import 'package:recipe_app/app/view/common_widgets/custom_rich_text/custom_rich_text.dart';
@@ -28,7 +31,7 @@ class SignInScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const HeaderText(),
+              const HeaderText(title: AppStrings.signIn,),
 
               SizedBox(
                 height: 120.h,
@@ -83,7 +86,36 @@ class SignInScreen extends StatelessWidget {
               SizedBox(
                 height: 32.h,
               ),
-              const SocialLoginIconsRow(),
+
+              //========================Social Login====================
+              SocialLoginIconsRow(
+                icons: [
+                  SocialIconModel(
+                    icon: Assets.images.google,
+                    onTap: () {
+                      print("Google Login Clicked");
+                    },
+                  ),
+                  SocialIconModel(
+                    icon: Assets.images.facebook,
+                    onTap: () {
+                      print("Facebook Login Clicked");
+                    },
+                  ),
+                  SocialIconModel(
+                    icon: Assets.images.microsoft,
+                    onTap: () {
+                      print("Microsoft Login Clicked");
+                    },
+                  ),
+                  SocialIconModel(
+                    icon: Assets.images.apple,
+                    onTap: () {
+                      print("Apple Login Clicked");
+                    },
+                  ),
+                ],
+              ),
 
               SizedBox(
                 height: 99.h,
@@ -92,7 +124,10 @@ class SignInScreen extends StatelessWidget {
               CustomRichText(
                 firstText: AppStrings.dontHaveAnAccount,
                 secondText: AppStrings.signUp,
-                onTapAction: () {},
+                onTapAction: () {
+                  AppRouter.route.pushNamed(RoutePath.signUpScreen);
+
+                },
               ),
               SizedBox(
                 height: 56.h,

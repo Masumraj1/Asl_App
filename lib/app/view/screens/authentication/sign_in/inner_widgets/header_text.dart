@@ -5,7 +5,10 @@ import 'package:recipe_app/app/utils/app_strings/app_strings.dart';
 import 'package:recipe_app/app/view/common_widgets/custom_text/custom_text.dart';
 
 class HeaderText extends StatelessWidget {
-  const HeaderText({super.key});
+  const HeaderText({super.key, required this.title});
+
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +17,7 @@ class HeaderText extends StatelessWidget {
       children: [
         CustomText(
           font: CustomFont.poppins,
-          text: AppStrings.signIn,
+          text: title,
           fontWeight: FontWeight.w500,
           color: AppColors.black,
           fontSize: 30.sp,

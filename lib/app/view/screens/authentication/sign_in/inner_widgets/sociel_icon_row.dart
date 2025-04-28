@@ -1,23 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:recipe_app/app/utils/custom_assets/assets.gen.dart';
 
 class SocialLoginIconsRow extends StatelessWidget {
-  const SocialLoginIconsRow({super.key});
+  final List<SocialIconModel> icons;
+
+  const SocialLoginIconsRow({super.key, required this.icons});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Assets.images.google.image(),
-        SizedBox(width: 18.w),
-        Assets.images.facebook.image(),
-        SizedBox(width: 18.w),
-        Assets.images.microsoft.image(),
-        SizedBox(width: 18.w),
-        Assets.images.apple.image(),
-      ],
+      children: List.generate(
+        icons.length,
+            (index) => Padding(
+          padding: EdgeInsets.only(right: index != icons.length - 1 ? 18.w : 0),
+          child: GestureDetector(
+            onTap: icons[index].onTap,
+            child: icons[index].icon.image(),
+          ),
+        ),
+      ),
     );
   }
+}
+
+class SocialIconModel {
+  final dynamic icon; // Your Assets.images
+  final VoidCallback onTap;
+
+  SocialIconModel({
+    required this.icon,
+    required this.onTap,
+  });
 }
