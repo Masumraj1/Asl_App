@@ -16,11 +16,23 @@ class AppStrings {
   static const orSignIn = "Or Sign In with";
   static const dontHaveAnAccount = "Don’t have an account? ";
   static const signUp = "Sign Up";
+  static const alreadyHaveAnAccount = "Already have an account? ";
   static const name = "Name";
   static const phoneNumber = "Phone Number";
   static const confirmPassword = "Confirm Password";
   static const orSignUp = "Or Sign Up with";
-  static const alreadyHaveAnAccount = "Already have an account? ";
+
+  ///: <<<<<<======🗄️🗄️🗄️🗄️🗄️🗄️💡💡Home💡💡🗄️🗄️🗄️🗄️🗄️🗄️🗄️>>>>>>>>===========
+
+  static const goodMorning = "Good Morning";
+  static const youAreInA = "You are in a";
+  static const environment = "environment";
+  static const healthy = "healthy";
+  static const myPlace = "My Places";
+  static const home = "Home";
+  static const office = "Office";
+  static const viewDetails = "View Details";
+
 
 
 }

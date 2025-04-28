@@ -31,7 +31,9 @@ class SignInScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const HeaderText(title: AppStrings.signIn,),
+              const HeaderText(
+                title: AppStrings.signIn,
+              ),
 
               SizedBox(
                 height: 120.h,
@@ -65,7 +67,9 @@ class SignInScreen extends StatelessWidget {
               CustomButton(
                 title: AppStrings.signIn,
                 isRadius: true,
-                onTap: () {},
+                onTap: () {
+                  AppRouter.route.goNamed(RoutePath.homeScreen);
+                },
                 textColor: AppColors.white,
               ),
 
@@ -126,7 +130,6 @@ class SignInScreen extends StatelessWidget {
                 secondText: AppStrings.signUp,
                 onTapAction: () {
                   AppRouter.route.pushNamed(RoutePath.signUpScreen);
-
                 },
               ),
               SizedBox(
