@@ -15,8 +15,6 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
-  /// File path: assets/icons/edit.svg
-  SvgGenImage get edit => const SvgGenImage('assets/icons/edit.svg');
 
   /// File path: assets/icons/eye.svg
   SvgGenImage get eye => const SvgGenImage('assets/icons/eye.svg');
@@ -24,11 +22,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/eye_off.svg
   SvgGenImage get eyeOff => const SvgGenImage('assets/icons/eye_off.svg');
 
-  /// File path: assets/icons/logout.svg
-  SvgGenImage get logout => const SvgGenImage('assets/icons/logout.svg');
+
 
   /// List of all assets
-  List<SvgGenImage> get values => [edit, eye, eyeOff, logout];
+  List<SvgGenImage> get values => [eye, eyeOff, ];
 }
 
 class Assets {

@@ -5,7 +5,7 @@ class AppColors {
   AppColors._();
   ///============================ Red Series ===============================
 
-  // static const Color gray500 = Color(0xff333333);
+  static const Color white = Color(0xffFFFFFF);
 
 
 
