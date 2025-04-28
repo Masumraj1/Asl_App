@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
+import 'package:recipe_app/app/core/routes.dart';
 import 'package:recipe_app/app/global/controller/auth_controller.dart';
 import 'package:recipe_app/app/utils/app_colors/app_colors.dart';
 import 'package:recipe_app/app/utils/app_strings/app_strings.dart';
@@ -88,7 +90,9 @@ class SignUpScreen extends StatelessWidget {
               CustomButton(
                 title: AppStrings.signUp,
                 isRadius: true,
-                onTap: () {},
+                onTap: () {
+
+                },
                 textColor: AppColors.white,
               ),
 
@@ -147,7 +151,9 @@ class SignUpScreen extends StatelessWidget {
               CustomRichText(
                 firstText: AppStrings.alreadyHaveAnAccount,
                 secondText: AppStrings.signIn,
-                onTapAction: () {},
+                onTapAction: () {
+                  context.pop();
+                },
               ),
               SizedBox(
                 height: 56.h,
