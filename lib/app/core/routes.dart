@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:recipe_app/app/global/helper/extension/extension.dart';
 import 'package:recipe_app/app/view/screens/authentication/sign_up/sign_up_screen.dart';
+import 'package:recipe_app/app/view/screens/details/details_screen.dart';
 import 'package:recipe_app/app/view/screens/home/home_screen.dart';
 import 'package:recipe_app/app/view/screens/splash/splash_screen.dart';
 import '../view/screens/authentication/sign_in/sign_in_screen.dart';
@@ -18,7 +19,7 @@ class AppRouter {
           name: RoutePath.splashScreen,
           path: RoutePath.splashScreen.addBasePath,
           pageBuilder: (context, state) => _buildPageWithAnimation(
-            child:  SplashScreen(),
+            child: SplashScreen(),
             state: state,
           ),
         ),
@@ -28,7 +29,7 @@ class AppRouter {
           name: RoutePath.signInScreen,
           path: RoutePath.signInScreen.addBasePath,
           pageBuilder: (context, state) => _buildPageWithAnimation(
-            child:   SignInScreen(),
+            child: SignInScreen(),
             state: state,
           ),
         ),
@@ -37,7 +38,7 @@ class AppRouter {
           name: RoutePath.signUpScreen,
           path: RoutePath.signUpScreen.addBasePath,
           pageBuilder: (context, state) => _buildPageWithAnimation(
-            child:   SignUpScreen(),
+            child: SignUpScreen(),
             state: state,
           ),
         ),
@@ -46,12 +47,18 @@ class AppRouter {
           name: RoutePath.homeScreen,
           path: RoutePath.homeScreen.addBasePath,
           pageBuilder: (context, state) => _buildPageWithAnimation(
-            child:   const HomeScreen(),
+            child: const HomeScreen(),
             state: state,
           ),
         ),
-
-
+        GoRoute(
+          name: RoutePath.detailsScreen,
+          path: RoutePath.detailsScreen.addBasePath,
+          pageBuilder: (context, state) => _buildPageWithAnimation(
+            child: const DetailsScreen(),
+            state: state,
+          ),
+        ),
       ]);
 
   static CustomTransitionPage _buildPageWithAnimation(
