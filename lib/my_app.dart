@@ -11,6 +11,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("width=====================${MediaQuery.of(context).size.width}");
+    debugPrint("Height=====================${MediaQuery.of(context).size.height}");
     return ScreenUtilInit(
       designSize: const Size(393, 812),
       minTextAdapt: true,
