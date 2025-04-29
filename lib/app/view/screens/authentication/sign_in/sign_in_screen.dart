@@ -1,24 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:recipe_app/app/core/route_path.dart';
-import 'package:recipe_app/app/core/routes.dart';
-import 'package:recipe_app/app/global/controller/auth_controller.dart';
-import 'package:recipe_app/app/utils/app_colors/app_colors.dart';
-import 'package:recipe_app/app/utils/app_strings/app_strings.dart';
-import 'package:recipe_app/app/utils/custom_assets/assets.gen.dart';
-import 'package:recipe_app/app/view/common_widgets/custom_button/custom_button.dart';
-import 'package:recipe_app/app/view/common_widgets/custom_from_card/custom_from_card.dart';
-import 'package:recipe_app/app/view/common_widgets/custom_rich_text/custom_rich_text.dart';
-import 'package:recipe_app/app/view/common_widgets/custom_text/custom_text.dart';
-import 'package:recipe_app/app/view/common_widgets/remember_and_forget_password/remember_and_forget_password.dart';
-import 'package:recipe_app/app/view/screens/authentication/sign_in/inner_widgets/sociel_icon_row.dart';
+import 'package:task360/app/core/route_path.dart';
+import 'package:task360/app/core/routes.dart';
+import 'package:task360/app/global/controller/auth_controller.dart';
+import 'package:task360/app/utils/app_colors/app_colors.dart';
+import 'package:task360/app/utils/app_strings/app_strings.dart';
+import 'package:task360/app/utils/custom_assets/assets.gen.dart';
+import 'package:task360/app/view/common_widgets/custom_button/custom_button.dart';
+import 'package:task360/app/view/common_widgets/custom_from_card/custom_from_card.dart';
+import 'package:task360/app/view/common_widgets/custom_loader/custom_loader.dart';
+import 'package:task360/app/view/common_widgets/custom_rich_text/custom_rich_text.dart';
+import 'package:task360/app/view/common_widgets/custom_text/custom_text.dart';
+import 'package:task360/app/view/common_widgets/remember_and_forget_password/remember_and_forget_password.dart';
+import 'package:task360/app/view/screens/authentication/sign_in/inner_widgets/sociel_icon_row.dart';
 
 import 'inner_widgets/header_text.dart';
 
-class SignInScreen extends StatelessWidget {
-  SignInScreen({super.key});
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
 
+  @override
+  State<SignInScreen> createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
   final AuthController authController = Get.find<AuthController>();
 
   @override
@@ -43,7 +49,7 @@ class SignInScreen extends StatelessWidget {
               CustomFromCard(
                   hinText: AppStrings.userExampleEmail,
                   title: AppStrings.email,
-                  controller: TextEditingController(),
+                  controller: authController.emailController,
                   validator: (v) {}),
 
               //==========================Password=================
@@ -52,7 +58,7 @@ class SignInScreen extends StatelessWidget {
                   isPassword: true,
                   hinText: AppStrings.enterYourPassword,
                   title: AppStrings.password,
-                  controller: TextEditingController(),
+                  controller: authController.passwordController,
                   validator: (v) {}),
 
               ///: <<<<<<======🗄️🗄️🗄️🗄️🗄️🗄️💡💡RememberMeAndForgotPasswordRow💡💡🗄️🗄️🗄️🗄️🗄️🗄️🗄️>>>>>>>>===========
@@ -64,14 +70,17 @@ class SignInScreen extends StatelessWidget {
               ),
 
               //================Sign In Button================
-              CustomButton(
+
+              Obx(() => authController.isSignInLoading.value
+                  ? const CustomLoader()
+                  : CustomButton(
                 title: AppStrings.signIn,
                 isRadius: true,
-                onTap: () {
-                  AppRouter.route.goNamed(RoutePath.homeScreen);
+                onTap: (){
+                  authController.signIn();
                 },
                 textColor: AppColors.white,
-              ),
+              )),
 
               SizedBox(
                 height: 42.h,

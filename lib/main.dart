@@ -1,10 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:recipe_app/app/global/helper/device_utils/device_utils.dart';
+import 'package:task360/app/global/helper/device_utils/device_utils.dart';
 
 import 'my_app.dart';
 
-void main() {
+void main()async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   DeviceUtils.lockDevicePortrait();
   runApp(const MyApp());
 }

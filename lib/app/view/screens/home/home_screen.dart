@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:recipe_app/app/utils/app_colors/app_colors.dart';
-import 'package:recipe_app/app/view/common_widgets/home_card/home_card.dart';
+import 'package:task360/app/utils/app_colors/app_colors.dart';
+import 'package:task360/app/view/common_widgets/home_card/home_card.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

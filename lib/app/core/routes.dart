@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:recipe_app/app/global/helper/extension/extension.dart';
-import 'package:recipe_app/app/view/screens/authentication/sign_up/sign_up_screen.dart';
-import 'package:recipe_app/app/view/screens/details/details_screen.dart';
-import 'package:recipe_app/app/view/screens/home/home_screen.dart';
-import 'package:recipe_app/app/view/screens/splash/splash_screen.dart';
+import 'package:task360/app/global/helper/extension/extension.dart';
+import 'package:task360/app/view/screens/authentication/sign_up/sign_up_screen.dart';
+import 'package:task360/app/view/screens/details/details_screen.dart';
+import 'package:task360/app/view/screens/home/home_screen.dart';
+import 'package:task360/app/view/screens/splash/splash_screen.dart';
 import '../view/screens/authentication/sign_in/sign_in_screen.dart';
 import 'route_path.dart';
 
@@ -42,6 +42,16 @@ class AppRouter {
             state: state,
           ),
         ),
+        // GoRoute(
+        //   name: RoutePath.authGate,
+        //   path: RoutePath.authGate.addBasePath,
+        //   pageBuilder: (context, state) => _buildPageWithAnimation(
+        //     child: const AuthGate(),
+        //     state: state,
+        //   ),
+        // ),
+
+        ///======================= Home Route =======================
 
         GoRoute(
           name: RoutePath.homeScreen,

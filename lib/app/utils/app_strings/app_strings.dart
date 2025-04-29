@@ -34,5 +34,11 @@ class AppStrings {
   static const viewDetails = "View Details";
 
 
+  ///: <<<<<<======🗄️🗄️🗄️🗄️🗄️🗄️💡💡Other text💡💡🗄️🗄️🗄️🗄️🗄️🗄️🗄️>>>>>>>>===========
+
+  static const loading = "Loading...";
+  static const somethingWentWrong = "Something went wrong!";
+
+
 
 }
