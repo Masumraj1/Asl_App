@@ -59,6 +59,7 @@ class AppRouter {
           pageBuilder: (context, state) => _buildPageWithAnimation(
             child: const HomeScreen(),
             state: state,
+            disableAnimation: true
           ),
         ),
         GoRoute(

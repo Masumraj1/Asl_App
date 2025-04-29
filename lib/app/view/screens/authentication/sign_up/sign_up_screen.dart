@@ -8,6 +8,7 @@ import 'package:task360/app/utils/app_strings/app_strings.dart';
 import 'package:task360/app/utils/custom_assets/assets.gen.dart';
 import 'package:task360/app/view/common_widgets/custom_button/custom_button.dart';
 import 'package:task360/app/view/common_widgets/custom_from_card/custom_from_card.dart';
+import 'package:task360/app/view/common_widgets/custom_loader/custom_loader.dart';
 import 'package:task360/app/view/common_widgets/custom_rich_text/custom_rich_text.dart';
 import 'package:task360/app/view/common_widgets/custom_text/custom_text.dart';
 import 'package:task360/app/view/screens/authentication/sign_in/inner_widgets/header_text.dart';
@@ -38,7 +39,7 @@ class SignUpScreen extends StatelessWidget {
               CustomFromCard(
                   hinText: AppStrings.enterYourName,
                   title: AppStrings.name,
-                  controller: TextEditingController(),
+                  controller:authController.nameController,
                   validator: (v) {}),
 
 
@@ -55,7 +56,7 @@ class SignUpScreen extends StatelessWidget {
               CustomFromCard(
                   hinText: AppStrings.userExampleEmail,
                   title: AppStrings.email,
-                  controller: TextEditingController(),
+                  controller: authController.emailController,
                   validator: (v) {}),
 
               //==========================Password=================
@@ -64,7 +65,7 @@ class SignUpScreen extends StatelessWidget {
                   isPassword: true,
                   hinText: AppStrings.enterYourPassword,
                   title: AppStrings.password,
-                  controller: TextEditingController(),
+                  controller: authController.passwordController,
                   validator: (v) {}),
 
 
@@ -84,14 +85,16 @@ class SignUpScreen extends StatelessWidget {
               ),
 
               //================Sign In Button================
-              CustomButton(
+              Obx(() => authController.isSignUpLoading.value
+                  ? const CustomLoader()
+                  : CustomButton(
                 title: AppStrings.signUp,
                 isRadius: true,
-                onTap: () {
-
+                onTap: (){
+                  authController.signUp();
                 },
                 textColor: AppColors.white,
-              ),
+              )),
 
               SizedBox(
                 height: 42.h,
