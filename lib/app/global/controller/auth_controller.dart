@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:task360/app/core/route_path.dart';
 import 'package:task360/app/core/routes.dart';
 import 'package:task360/app/global/helper/toast_message/toast_message.dart';
+import 'package:task360/app/utils/app_strings/app_strings.dart';
 
 class AuthController extends GetxController {
   RxBool isRemember = false.obs;
@@ -19,20 +20,31 @@ class AuthController extends GetxController {
   Future<void> signIn() async {
     isSignInLoading.value = true;
     try {
-      await _auth.signInWithEmailAndPassword(
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
-     toastMessage(message: "Login Successful");
+
+      User? user = userCredential.user;
+
+      toastMessage(message: AppStrings.loginSuccessful);
+
+      if (user != null) {
+        debugPrint(" UID: ======================>>>${user.uid}");
+        debugPrint("Email: ======================>>>${user.email}");
+        debugPrint("Email Verified: ======================>>> ${user.emailVerified}");
+        debugPrint(" Photo URL: ======================>>> ${user.photoURL}");
+      }
 
       AppRouter.route.pushNamed(RoutePath.homeScreen);
     } catch (e) {
-      toastMessage(message: "Login Failed");
-
+      toastMessage(message: AppStrings.loginFailed);
+      debugPrint("❌ Sign in error: $e");
     } finally {
       isSignInLoading.value = false;
     }
   }
+
 
   //=======================Sign Up Method=======================
   var isSignUpLoading = false.obs;

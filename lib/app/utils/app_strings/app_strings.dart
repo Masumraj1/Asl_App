@@ -38,6 +38,8 @@ class AppStrings {
 
   static const loading = "Loading...";
   static const somethingWentWrong = "Something went wrong!";
+  static const loginSuccessful = "Login Successful";
+  static const loginFailed = "Login Failed";
 
 
 
