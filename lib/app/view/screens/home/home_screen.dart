@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:task360/app/core/route_path.dart';
+import 'package:task360/app/core/routes.dart';
 import 'package:task360/app/utils/app_colors/app_colors.dart';
 import 'package:task360/app/utils/app_constants/app_constants.dart';
 import 'package:task360/app/utils/app_strings/app_strings.dart';
@@ -40,19 +42,25 @@ class HomeScreen extends StatelessWidget {
                   ),
                   Column(
                     children: List.generate(2, (index) {
-                      return HomeCard(
-                        title: "Home",
-                        status: "Good",
-                        ppmValue: "652",
-                        percentage: "13%",
-                        userImages: const [
-                          'https://randomuser.me/api/portraits/men/11.jpg',
-                          'https://randomuser.me/api/portraits/women/32.jpg',
-                        ],
-                        extraCount: "2",
-                        onViewDetailsTap: () {
-                          debugPrint("Home View Details clicked");
+                      return GestureDetector(
+                        onTap: (){
+                          AppRouter.route.pushNamed(RoutePath.detailsScreen);
+
                         },
+                        child: HomeCard(
+                          title: "Home",
+                          status: "Good",
+                          ppmValue: "652",
+                          percentage: "13%",
+                          userImages: const [
+                            'https://randomuser.me/api/portraits/men/11.jpg',
+                            'https://randomuser.me/api/portraits/women/32.jpg',
+                          ],
+                          extraCount: "2",
+                          onViewDetailsTap: () {
+                            debugPrint("Home View Details clicked");
+                          },
+                        ),
                       );
                     }),
                   )

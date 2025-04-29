@@ -13,6 +13,8 @@ class AppColors {
   static const Color begin = Color(0xffe9f7ef);
   static const Color end = Color(0xffd3f9e5);
   static const Color cardFirst = Color(0xffF8FFFB);
+  static const Color plantsCardFirst = Color(0xffA1FFD0);
+  static const Color plantsCardLast = Color(0xff6ABC93);
 
 
 
