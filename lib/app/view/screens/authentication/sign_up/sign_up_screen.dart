@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:task360/app/global/controller/auth_controller.dart';
+import 'package:task360/app/global/helper/validators/validators.dart';
 import 'package:task360/app/utils/app_colors/app_colors.dart';
 import 'package:task360/app/utils/app_strings/app_strings.dart';
 import 'package:task360/app/utils/custom_assets/assets.gen.dart';
@@ -18,6 +19,7 @@ class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});
 
   final AuthController authController = Get.find<AuthController>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -26,149 +28,155 @@ class SignUpScreen extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 43.h, horizontal: 33.w),
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const HeaderText(title: AppStrings.signUp,),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const HeaderText(
+                  title: AppStrings.signUp,
+                ),
 
-              SizedBox(
-                height: 120.h,
-              ),
+                SizedBox(
+                  height: 120.h,
+                ),
 
-              //==========================name=================
-              CustomFromCard(
-                  hinText: AppStrings.enterYourName,
-                  title: AppStrings.name,
-                  controller:authController.nameController,
-                  validator: (v) {}),
+                //==========================name=================
+                CustomFromCard(
+                    hinText: AppStrings.enterYourName,
+                    title: AppStrings.name,
+                    controller: authController.nameController,
+                    validator: Validators.nameValidator),
 
+                //==========================Phone Number=================
+                // CustomFromCard(
+                //     hinText: "17XXXXXXXX",
+                //     title: AppStrings.phoneNumber,
+                //     controller: TextEditingController(),
+                //     validator: (v) {}),
 
+                //==========================Email=================
+                CustomFromCard(
+                    hinText: AppStrings.userExampleEmail,
+                    title: AppStrings.email,
+                    controller: authController.emailController,
+                    validator: Validators.emailValidator),
 
-              //==========================Phone Number=================
-              CustomFromCard(
-                  hinText: "17XXXXXXXX",
-                  title: AppStrings.phoneNumber,
-                  controller: TextEditingController(),
-                  validator: (v) {}),
+                //==========================Password=================
 
+                CustomFromCard(
+                    isPassword: true,
+                    hinText: AppStrings.enterYourPassword,
+                    title: AppStrings.password,
+                    controller: authController.passwordController,
+                    validator: Validators.passwordValidator),
 
-              //==========================Email=================
-              CustomFromCard(
-                  hinText: AppStrings.userExampleEmail,
-                  title: AppStrings.email,
-                  controller: authController.emailController,
-                  validator: (v) {}),
+                //==========================Confirm Password=================
 
-              //==========================Password=================
-
-              CustomFromCard(
-                  isPassword: true,
-                  hinText: AppStrings.enterYourPassword,
-                  title: AppStrings.password,
-                  controller: authController.passwordController,
-                  validator: (v) {}),
-
-
-              //==========================Confirm Password=================
-
-              CustomFromCard(
+                CustomFromCard(
                   isPassword: true,
                   hinText: AppStrings.enterYourPassword,
                   title: AppStrings.confirmPassword,
                   controller: TextEditingController(),
-                  validator: (v) {}),
-
-
-
-              SizedBox(
-                height: 47.h,
-              ),
-
-              //================Sign In Button================
-              Obx(() => authController.isSignUpLoading.value
-                  ? const CustomLoader()
-                  : CustomButton(
-                title: AppStrings.signUp,
-                isRadius: true,
-                onTap: (){
-                  authController.signUp();
-                },
-                textColor: AppColors.white,
-              )),
-
-              SizedBox(
-                height: 42.h,
-              ),
-
-              Center(
-                child: CustomText(
-                  textAlign: TextAlign.center,
-                  text: AppStrings.orSignUp,
-                  font: CustomFont.inter,
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.gray,
+                  validator: (value) {
+                    // Pass the password value for confirmation check
+                    return Validators.confirmPasswordValidator(
+                        value, authController.passwordController.text);
+                  },
                 ),
-              ),
-              SizedBox(
-                height: 32.h,
-              ),
 
-              //========================Social Login====================
-              SocialLoginIconsRow(
-                icons: [
-                  SocialIconModel(
-                    icon: Assets.images.google,
-                    onTap: () {
-                      print("Google Login Clicked");
-                    },
+                SizedBox(
+                  height: 47.h,
+                ),
+
+                //================Sign In Button================
+                Obx(() => authController.isSignUpLoading.value
+                    ? const CustomLoader()
+                    : CustomButton(
+                        title: AppStrings.signUp,
+                        isRadius: true,
+                        onTap: () {
+                          if (_formKey.currentState!.validate()) {
+                            authController.signUp();
+                          }
+                        },
+                        textColor: AppColors.white,
+                      )),
+
+                SizedBox(
+                  height: 42.h,
+                ),
+
+                Center(
+                  child: CustomText(
+                    textAlign: TextAlign.center,
+                    text: AppStrings.orSignUp,
+                    font: CustomFont.inter,
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.gray,
                   ),
-                  SocialIconModel(
-                    icon: Assets.images.facebook,
-                    onTap: () {
-                      print("Facebook Login Clicked");
-                    },
-                  ),
-                  SocialIconModel(
-                    icon: Assets.images.microsoft,
-                    onTap: () {
-                      print("Microsoft Login Clicked");
-                    },
-                  ),
-                  SocialIconModel(
-                    icon: Assets.images.apple,
-                    onTap: () {
-                      print("Apple Login Clicked");
-                    },
-                  ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  height: 32.h,
+                ),
 
-              SizedBox(
-                height: 99.h,
-              ),
+                //========================Social Login====================
+                SocialLoginIconsRow(
+                  icons: [
+                    SocialIconModel(
+                      icon: Assets.images.google,
+                      onTap: () {
+                        print("Google Login Clicked");
+                      },
+                    ),
+                    SocialIconModel(
+                      icon: Assets.images.facebook,
+                      onTap: () {
+                        print("Facebook Login Clicked");
+                      },
+                    ),
+                    SocialIconModel(
+                      icon: Assets.images.microsoft,
+                      onTap: () {
+                        print("Microsoft Login Clicked");
+                      },
+                    ),
+                    SocialIconModel(
+                      icon: Assets.images.apple,
+                      onTap: () {
+                        print("Apple Login Clicked");
+                      },
+                    ),
+                  ],
+                ),
 
-              CustomRichText(
-                firstText: AppStrings.alreadyHaveAnAccount,
-                secondText: AppStrings.signIn,
-                onTapAction: () {
-                  context.pop();
-                },
-              ),
-              SizedBox(
-                height: 56.h,
-              ),
+                SizedBox(
+                  height: 99.h,
+                ),
 
-              CustomRichText(
-                firstText: AppStrings.poweredBy,
-                secondText: AppStrings.m360,
-                onTapAction: () {},
-              ),
+                CustomRichText(
+                  firstText: AppStrings.alreadyHaveAnAccount,
+                  secondText: AppStrings.signIn,
+                  onTapAction: () {
+                    context.pop();
+                  },
+                ),
+                SizedBox(
+                  height: 56.h,
+                ),
 
-              SizedBox(
-                height: 41.h,
-              )
-            ],
+                CustomRichText(
+                  firstText: AppStrings.poweredBy,
+                  secondText: AppStrings.m360,
+                  onTapAction: () {},
+                ),
+
+                SizedBox(
+                  height: 41.h,
+                )
+              ],
+            ),
           ),
         ),
       ),

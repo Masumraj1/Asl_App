@@ -36,7 +36,7 @@ class AuthController extends GetxController {
         debugPrint(" Photo URL: ======================>>> ${user.photoURL}");
       }
 
-      AppRouter.route.pushNamed(RoutePath.homeScreen);
+      AppRouter.route.goNamed(RoutePath.homeScreen);
     } catch (e) {
       toastMessage(message: AppStrings.loginFailed);
       debugPrint("❌ Sign in error: $e");
@@ -59,15 +59,16 @@ class AuthController extends GetxController {
 
       await userCredential.user?.updateDisplayName(nameController.text.trim());
 
-      if (Get.overlayContext != null) {
-        Get.snackbar('Success', 'Account Created Successfully');
-      }
+      toastMessage(message: AppStrings.accountCreatedSuccessfully);
 
-      AppRouter.route.pushNamed(RoutePath.homeScreen);
-    } catch (e) {
-      if (Get.overlayContext != null) {
-        Get.snackbar('Error', 'Sign Up Failed:');
+      if (userCredential != null) {
+        debugPrint(" user: ======================>>>${userCredential.user}");
+        debugPrint("Name: ${nameController.text}");
+        debugPrint("Email: ${emailController.text}");
       }
+      AppRouter.route.goNamed(RoutePath.homeScreen);
+    } catch (e) {
+      toastMessage(message: AppStrings.signUpFailed);
     } finally {
       isSignUpLoading.value = false;
     }

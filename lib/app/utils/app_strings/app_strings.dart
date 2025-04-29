@@ -40,6 +40,8 @@ class AppStrings {
   static const somethingWentWrong = "Something went wrong!";
   static const loginSuccessful = "Login Successful";
   static const loginFailed = "Login Failed";
+  static const accountCreatedSuccessfully = "Account Created Successfully";
+  static const signUpFailed = "Sign Up Failed:";
 
 
 
