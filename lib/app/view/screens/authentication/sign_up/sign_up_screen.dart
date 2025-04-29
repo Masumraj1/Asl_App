@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-import 'package:task360/app/global/controller/auth_controller.dart';
 import 'package:task360/app/global/helper/validators/validators.dart';
 import 'package:task360/app/utils/app_colors/app_colors.dart';
 import 'package:task360/app/utils/app_strings/app_strings.dart';
@@ -12,6 +11,7 @@ import 'package:task360/app/view/common_widgets/custom_from_card/custom_from_car
 import 'package:task360/app/view/common_widgets/custom_loader/custom_loader.dart';
 import 'package:task360/app/view/common_widgets/custom_rich_text/custom_rich_text.dart';
 import 'package:task360/app/view/common_widgets/custom_text/custom_text.dart';
+import 'package:task360/app/view/screens/authentication/controller/auth_controller.dart';
 import 'package:task360/app/view/screens/authentication/sign_in/inner_widgets/header_text.dart';
 import 'package:task360/app/view/screens/authentication/sign_in/inner_widgets/sociel_icon_row.dart';
 
