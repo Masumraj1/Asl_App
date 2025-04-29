@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task360/app/utils/app_colors/app_colors.dart';
 import 'package:task360/app/utils/app_constants/app_constants.dart';
+import 'package:task360/app/utils/app_strings/app_strings.dart';
 import 'package:task360/app/view/common_widgets/common_home_app_bar/common_home_app_bar.dart';
+import 'package:task360/app/view/common_widgets/custom_text/custom_text.dart';
 import 'package:task360/app/view/common_widgets/home_card/home_card.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -15,28 +17,46 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
+          //==========================Home Appbar====================
           CommonHomeAppBar(
             scaffoldKey: scaffoldKey,
             name: 'Ahmed Ariyan',
             image: AppConstants.demoImage,
-            onTap: () {}, title: 'Good Morning',
+            onTap: () {},
+            title: 'Good Morning',
           ),
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 26.w, vertical: 41.h),
-              child: HomeCard(
-                title: "Home",
-                status: "Good",
-                ppmValue: "652",
-                percentage: "13%",
-                userImages: [
-                  'https://randomuser.me/api/portraits/men/11.jpg',
-                  'https://randomuser.me/api/portraits/women/32.jpg',
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomText(
+                    text: AppStrings.myPlace,
+                    font: CustomFont.poppins,
+                    fontWeight: FontWeight.w300,
+                    color: AppColors.black,
+                    fontSize: 16.sp,
+                  ),
+                  Column(
+                    children: List.generate(2, (index) {
+                      return HomeCard(
+                        title: "Home",
+                        status: "Good",
+                        ppmValue: "652",
+                        percentage: "13%",
+                        userImages: const [
+                          'https://randomuser.me/api/portraits/men/11.jpg',
+                          'https://randomuser.me/api/portraits/women/32.jpg',
+                        ],
+                        extraCount: "2",
+                        onViewDetailsTap: () {
+                          debugPrint("Home View Details clicked");
+                        },
+                      );
+                    }),
+                  )
                 ],
-                extraCount: "2",
-                onViewDetailsTap: () {
-                  print("Home View Details clicked");
-                },
               ),
             ),
           ),

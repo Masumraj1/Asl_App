@@ -15,6 +15,9 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/Polygon 2.svg
+  SvgGenImage get polygon2 => const SvgGenImage('assets/icons/Polygon 2.svg');
+
   /// File path: assets/icons/apple.svg
   SvgGenImage get apple => const SvgGenImage('assets/icons/apple.svg');
 
@@ -39,7 +42,7 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<SvgGenImage> get values =>
-      [apple, eye, eyeOff, facebook, google, ispassword, microsoft];
+      [polygon2, apple, eye, eyeOff, facebook, google, ispassword, microsoft];
 }
 
 class $AssetsImagesGen {

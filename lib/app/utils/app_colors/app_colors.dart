@@ -12,6 +12,7 @@ class AppColors {
   static const Color black = Color(0xff000000);
   static const Color begin = Color(0xffe9f7ef);
   static const Color end = Color(0xffd3f9e5);
+  static const Color cardFirst = Color(0xffF8FFFB);
 
 
 
