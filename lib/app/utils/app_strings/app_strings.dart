@@ -25,9 +25,9 @@ class AppStrings {
   ///: <<<<<<======🗄️🗄️🗄️🗄️🗄️🗄️💡💡Home💡💡🗄️🗄️🗄️🗄️🗄️🗄️🗄️>>>>>>>>===========
 
   static const goodMorning = "Good Morning";
-  static const youAreInA = "You are in a";
+  static const youAreInA = "You are in a ";
   static const environment = "environment";
-  static const healthy = "healthy";
+  static const healthy = "healthy ";
   static const myPlace = "My Places";
   static const home = "Home";
   static const office = "Office";

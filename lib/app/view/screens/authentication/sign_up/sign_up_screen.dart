@@ -155,21 +155,25 @@ class SignUpScreen extends StatelessWidget {
                   height: 99.h,
                 ),
 
-                CustomRichText(
-                  firstText: AppStrings.alreadyHaveAnAccount,
-                  secondText: AppStrings.signIn,
-                  onTapAction: () {
-                    context.pop();
-                  },
+                Center(
+                  child: CustomRichText(
+                    firstText: AppStrings.alreadyHaveAnAccount,
+                    secondText: AppStrings.signIn,
+                    onTapAction: () {
+                      context.pop();
+                    },
+                  ),
                 ),
                 SizedBox(
                   height: 56.h,
                 ),
 
-                CustomRichText(
-                  firstText: AppStrings.poweredBy,
-                  secondText: AppStrings.m360,
-                  onTapAction: () {},
+                Center(
+                  child: CustomRichText(
+                    firstText: AppStrings.poweredBy,
+                    secondText: AppStrings.m360,
+                    onTapAction: () {},
+                  ),
                 ),
 
                 SizedBox(

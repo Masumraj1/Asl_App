@@ -77,9 +77,10 @@ class SignInScreen extends StatelessWidget {
                         title: AppStrings.signIn,
                         isRadius: true,
                         onTap: () {
-                          if (_formKey.currentState!.validate()) {
-                            authController.signIn();
-                          }
+                          AppRouter.route.goNamed(RoutePath.homeScreen);
+                          // if (_formKey.currentState!.validate()) {
+                          //   authController.signIn();
+                          // }
                         },
                         textColor: AppColors.white,
                       )),
@@ -136,21 +137,25 @@ class SignInScreen extends StatelessWidget {
                   height: 99.h,
                 ),
 
-                CustomRichText(
-                  firstText: AppStrings.dontHaveAnAccount,
-                  secondText: AppStrings.signUp,
-                  onTapAction: () {
-                    AppRouter.route.pushNamed(RoutePath.signUpScreen);
-                  },
+                Center(
+                  child: CustomRichText(
+                    firstText: AppStrings.dontHaveAnAccount,
+                    secondText: AppStrings.signUp,
+                    onTapAction: () {
+                      AppRouter.route.pushNamed(RoutePath.signUpScreen);
+                    },
+                  ),
                 ),
                 SizedBox(
                   height: 56.h,
                 ),
 
-                CustomRichText(
-                  firstText: AppStrings.poweredBy,
-                  secondText: AppStrings.m360,
-                  onTapAction: () {},
+                Center(
+                  child: CustomRichText(
+                    firstText: AppStrings.poweredBy,
+                    secondText: AppStrings.m360,
+                    onTapAction: () {},
+                  ),
                 ),
 
                 SizedBox(
