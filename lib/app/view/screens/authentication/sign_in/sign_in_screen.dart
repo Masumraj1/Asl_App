@@ -77,10 +77,10 @@ class SignInScreen extends StatelessWidget {
                         title: AppStrings.signIn,
                         isRadius: true,
                         onTap: () {
-                          AppRouter.route.goNamed(RoutePath.homeScreen);
-                          // if (_formKey.currentState!.validate()) {
-                          //   authController.signIn();
-                          // }
+                          // AppRouter.route.goNamed(RoutePath.homeScreen);
+                          if (_formKey.currentState!.validate()) {
+                            authController.signIn();
+                          }
                         },
                         textColor: AppColors.white,
                       )),

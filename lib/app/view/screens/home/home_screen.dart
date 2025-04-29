@@ -30,41 +30,43 @@ class HomeScreen extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 26.w, vertical: 41.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomText(
-                    text: AppStrings.myPlace,
-                    font: CustomFont.poppins,
-                    fontWeight: FontWeight.w300,
-                    color: AppColors.black,
-                    fontSize: 16.sp,
-                  ),
-                  Column(
-                    children: List.generate(2, (index) {
-                      return GestureDetector(
-                        onTap: (){
-                          AppRouter.route.pushNamed(RoutePath.detailsScreen);
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomText(
+                      text: AppStrings.myPlace,
+                      font: CustomFont.poppins,
+                      fontWeight: FontWeight.w300,
+                      color: AppColors.black,
+                      fontSize: 16.sp,
+                    ),
+                    Column(
+                      children: List.generate(2, (index) {
+                        return GestureDetector(
+                          onTap: (){
+                            AppRouter.route.pushNamed(RoutePath.detailsScreen);
 
-                        },
-                        child: HomeCard(
-                          title: "Home",
-                          status: "Good",
-                          ppmValue: "652",
-                          percentage: "13%",
-                          userImages: const [
-                            'https://randomuser.me/api/portraits/men/11.jpg',
-                            'https://randomuser.me/api/portraits/women/32.jpg',
-                          ],
-                          extraCount: "2",
-                          onViewDetailsTap: () {
-                            debugPrint("Home View Details clicked");
                           },
-                        ),
-                      );
-                    }),
-                  )
-                ],
+                          child: HomeCard(
+                            title: "Home",
+                            status: "Good",
+                            ppmValue: "652",
+                            percentage: "13%",
+                            userImages: const [
+                              'https://randomuser.me/api/portraits/men/11.jpg',
+                              'https://randomuser.me/api/portraits/women/32.jpg',
+                            ],
+                            extraCount: "2",
+                            onViewDetailsTap: () {
+                              debugPrint("Home View Details clicked");
+                            },
+                          ),
+                        );
+                      }),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
