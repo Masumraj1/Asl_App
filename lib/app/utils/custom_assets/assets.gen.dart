@@ -68,16 +68,18 @@ class $AssetsImagesGen {
   /// File path: assets/images/image 3.png
   AssetGenImage get image3 => const AssetGenImage('assets/images/image 3.png');
 
-  /// File path: assets/images/logos.png
-  AssetGenImage get logos => const AssetGenImage('assets/images/logos.png');
+
 
   /// File path: assets/images/microsoft.png
   AssetGenImage get microsoft =>
       const AssetGenImage('assets/images/microsoft.png');
 
+  /// File path: assets/images/task.png
+  AssetGenImage get task => const AssetGenImage('assets/images/task.png');
+
   /// List of all assets
   List<AssetGenImage> get values =>
-      [appIcon, apple, facebook, google, home1, image3, logos, microsoft];
+      [appIcon, apple, facebook, google, home1, image3, microsoft, task];
 }
 
 class Assets {
