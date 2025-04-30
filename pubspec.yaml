@@ -67,6 +67,7 @@ flutter_launcher_icons:
   image_path: "assets/images/task.png"
 
 
+  # flutter pub run flutter_launcher_icons:main
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
