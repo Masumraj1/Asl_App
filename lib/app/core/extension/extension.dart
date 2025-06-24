@@ -1,8 +1,6 @@
 
 
-
-
-import 'package:scholarship/app/core/route_path.dart';
+import 'package:scholarship/app/core/routes/route_path.dart';
 
 extension RouteBasePathExt on String {
   String get addBasePath {

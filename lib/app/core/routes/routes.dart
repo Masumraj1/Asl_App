@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:scholarship/app/global/helper/extension/extension.dart';
+import 'package:scholarship/app/core/extension/extension.dart';
+import 'package:scholarship/app/view/screens/home/home_screen.dart';
 import 'package:scholarship/app/view/screens/splash/splash_screen.dart';
-import '../view/screens/home/home_screen.dart';
 import 'route_path.dart';
 
 class AppRouter {
@@ -28,6 +28,7 @@ class AppRouter {
           pageBuilder: (context, state) => _buildPageWithAnimation(
             child:  const HomeScreen(),
             state: state,
+
           ),
         ),
       ]);

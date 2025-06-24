@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 
 import 'app/bindings/dependency_injection.dart';
-import 'app/core/routes.dart';
+import 'app/core/routes/routes.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
         debugPrint("Height=========${MediaQuery.of(context).size.height}");
     debugPrint("Weight=========${MediaQuery.of(context).size.width}");
     return ScreenUtilInit(
-      designSize: const Size(360, 776),
+      designSize: const Size(375, 812),
       minTextAdapt: true,
       useInheritedMediaQuery: true,
       builder: (context, child) => GetMaterialApp.router(
