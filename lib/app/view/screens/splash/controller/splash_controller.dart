@@ -1,8 +1,9 @@
 
 
 import 'package:get/get.dart';
-import 'package:recipe_app/app/core/route_path.dart';
-import 'package:recipe_app/app/core/routes.dart';
+import 'package:scholarship/app/core/route_path.dart';
+import 'package:scholarship/app/core/routes.dart';
+
 
 class SplashController extends GetxController{
 

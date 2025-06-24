@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:recipe_app/app/global/helper/extension/extension.dart';
-import 'package:recipe_app/app/view/screens/home/home_screen.dart';
-import 'package:recipe_app/app/view/screens/splash/splash_screen.dart';
+import 'package:scholarship/app/global/helper/extension/extension.dart';
+import 'package:scholarship/app/view/screens/splash/splash_screen.dart';
+import '../view/screens/home/home_screen.dart';
 import 'route_path.dart';
 
 class AppRouter {
