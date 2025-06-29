@@ -1,8 +1,10 @@
 
 
 import 'package:get/get.dart';
-import 'package:scholarship/app/core/routes/route_path.dart';
-import 'package:scholarship/app/core/routes/routes.dart';
+
+import '../../../../core/routes/route_path.dart';
+import '../../../../core/routes/routes.dart';
+
 
 
 
