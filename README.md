@@ -1,6 +1,11 @@
 # 
 
-
+30, ==Firebase Auth
+1, ==
+2, ==Home screen
+3, ==details
+4, ==add,edit,existing
+5  == error handling,flutter downgrade
 
 
 # asl_app
