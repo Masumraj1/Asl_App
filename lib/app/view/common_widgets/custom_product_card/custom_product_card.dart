@@ -11,8 +11,8 @@ class CustomProductCard extends StatelessWidget {
   final String currentPrice;
   final String originalPrice;
   final String discount;
-  final double rating;
-  final int reviewsCount;
+  // final double rating;
+  // final int reviewsCount;
 
   const CustomProductCard({
     required this.imageUrl,
@@ -20,8 +20,8 @@ class CustomProductCard extends StatelessWidget {
     required this.currentPrice,
     required this.originalPrice,
     required this.discount,
-    required this.rating,
-    required this.reviewsCount,
+    // required this.rating,
+    // required this.reviewsCount,
     super.key,
   });
 
