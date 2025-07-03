@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:task360/app/view/common_widgets/custom_text/custom_text.dart';
-import 'package:task360/app/view/common_widgets/custom_text_field/custom_text_field.dart';
 
 import '../../../core/constants/app_colors.dart';
+import '../custom_text/custom_text.dart';
+import '../custom_text_field/custom_text_field.dart';
 
 
 

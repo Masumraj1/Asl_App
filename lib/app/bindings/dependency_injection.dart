@@ -1,7 +1,8 @@
 
 import 'package:get/get.dart';
-import 'package:task360/app/view/screens/authentication/controller/auth_controller.dart';
-import 'package:task360/app/view/screens/splash/controller/splash_controller.dart';
+
+import '../view/screens/authentication/controller/auth_controller.dart';
+import '../view/screens/splash/controller/splash_controller.dart';
 
 
 class DependencyInjection extends Bindings {

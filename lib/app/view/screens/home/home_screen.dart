@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:task360/app/view/common_widgets/custom_appbar/custom_appbar.dart';
+
+import '../../common_widgets/custom_appbar/custom_appbar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

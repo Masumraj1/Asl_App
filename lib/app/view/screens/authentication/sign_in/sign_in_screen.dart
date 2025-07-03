@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import 'package:task360/app/view/common_widgets/custom_button/custom_button.dart';
-import 'package:task360/app/view/common_widgets/custom_from_card/custom_from_card.dart';
-import 'package:task360/app/view/common_widgets/custom_loader/custom_loader.dart';
-import 'package:task360/app/view/common_widgets/custom_rich_text/custom_rich_text.dart';
-import 'package:task360/app/view/common_widgets/custom_text/custom_text.dart';
-import 'package:task360/app/view/screens/authentication/controller/auth_controller.dart';
-
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/routes/route_path.dart';
 import '../../../../core/routes/routes.dart';
 import '../../../../core/utils/validators/validators.dart';
+import '../../../common_widgets/custom_button/custom_button.dart';
+import '../../../common_widgets/custom_from_card/custom_from_card.dart';
+import '../../../common_widgets/custom_loader/custom_loader.dart';
+import '../../../common_widgets/custom_rich_text/custom_rich_text.dart';
+import '../controller/auth_controller.dart';
 import 'inner_widgets/header_text.dart';
 
 class SignInScreen extends StatelessWidget {

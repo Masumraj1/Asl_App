@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:task360/app/core/constants/app_strings.dart';
-import 'package:task360/app/view/common_widgets/custom_rich_text/custom_rich_text.dart';
-
-
 import '../../../core/constants/app_colors.dart';
+import '../../../core/constants/app_strings.dart';
 import '../../../core/utils/custom_assets/assets.gen.dart';
+import '../../common_widgets/custom_rich_text/custom_rich_text.dart';
 import 'controller/splash_controller.dart';
 
 class SplashScreen extends StatelessWidget {

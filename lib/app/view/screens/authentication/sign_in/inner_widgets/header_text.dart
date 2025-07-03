@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:task360/app/view/common_widgets/custom_text/custom_text.dart';
 
 import '../../../../../core/constants/app_colors.dart';
 import '../../../../../core/constants/app_strings.dart';
+import '../../../../common_widgets/custom_text/custom_text.dart';
 
 
 class HeaderText extends StatelessWidget {
