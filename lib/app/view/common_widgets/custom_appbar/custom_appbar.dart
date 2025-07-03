@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 import '../../../core/constants/app_colors.dart';
 import '../custom_text/custom_text.dart';
 
@@ -11,6 +10,7 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final Color appBarBgColor;
   final String? appBarContent;
   final IconData? iconData;
+  final VoidCallback? onPressed;
 
   const CustomAppBar({
     this.appBarHeight = 64,
@@ -19,6 +19,7 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.appBarContent,
     super.key,
     this.iconData,
+    this.onPressed,
   });
 
   @override
@@ -35,10 +36,16 @@ class _CustomAppBarState extends State<CustomAppBar> {
       centerTitle: true,
       backgroundColor: widget.appBarBgColor,
       automaticallyImplyLeading: false,
+      leading: widget.iconData != null
+          ? IconButton(
+        icon: Icon(widget.iconData, color: AppColors.black),
+        onPressed: widget.onPressed,
+      )
+          : null,
       title: Padding(
         padding: EdgeInsets.only(top: 10.h),
-        child:  CustomText(
-          text: widget.appBarContent!,
+        child: CustomText(
+          text: widget.appBarContent ?? "",
           textAlign: TextAlign.center,
           font: CustomFont.poppins,
           fontWeight: FontWeight.w300,

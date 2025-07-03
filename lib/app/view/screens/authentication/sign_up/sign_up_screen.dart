@@ -11,7 +11,7 @@ import '../../../common_widgets/custom_from_card/custom_from_card.dart';
 import '../../../common_widgets/custom_loader/custom_loader.dart';
 import '../../../common_widgets/custom_rich_text/custom_rich_text.dart';
 import '../controller/auth_controller.dart';
-import '../sign_in/inner_widgets/header_text.dart';
+import '../sign_in/widgets/header_text.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});
@@ -70,7 +70,7 @@ class SignUpScreen extends StatelessWidget {
                   isPassword: true,
                   hinText: AppStrings.enterYourPassword,
                   title: AppStrings.confirmPassword,
-                  controller: TextEditingController(),
+                  controller: authController.confirmPasswordController,
                   validator: (value) {
                     // Pass the password value for confirmation check
                     return Validators.confirmPasswordValidator(

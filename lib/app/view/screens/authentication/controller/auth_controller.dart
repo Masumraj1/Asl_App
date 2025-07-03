@@ -14,9 +14,10 @@ class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   var isSignInLoading = false.obs;
 
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final emailController = TextEditingController(text: "masum12@gmail.com");
+  final passwordController = TextEditingController(text: "Masum017");
   final nameController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   //=======================Sign In Method=======================
   Future<void> signIn() async {
@@ -40,7 +41,8 @@ class AuthController extends GetxController {
 
       AppRouter.route.goNamed(RoutePath.homeScreen);
     } catch (e) {
-      toastMessage(message: AppStrings.loginFailed);
+      // toastMessage(message: e.toString());
+      // toastMessage(message: AppStrings.loginFailed);
       debugPrint("❌ Sign in error: $e");
     } finally {
       isSignInLoading.value = false;
@@ -75,4 +77,36 @@ class AuthController extends GetxController {
       isSignUpLoading.value = false;
     }
   }
+
+  //=======================Logout Method=======================
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
+
+      // Clear controllers if needed
+      emailController.clear();
+      passwordController.clear();
+      nameController.clear();
+      confirmPasswordController.clear();
+
+      toastMessage(message:"Log Out Successful"); // if you have a logout success string
+
+      // Navigate to Sign In screen after logout
+      AppRouter.route.goNamed(RoutePath.signInScreen);
+    } catch (e) {
+      debugPrint("❌ Sign out error: $e");
+      toastMessage(message: "Log Out Failed"); // optional failure toast
+    }
+  }
+
+  @override
+  void onClose() {
+    emailController.dispose();
+    passwordController.dispose();
+    nameController.dispose();
+    confirmPasswordController.dispose();
+
+    super.onClose();
+  }
+
 }

@@ -1,3 +1,4 @@
+import 'package:asl/app/view/screens/authentication/sign_in/widgets/header_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -11,7 +12,6 @@ import '../../../common_widgets/custom_from_card/custom_from_card.dart';
 import '../../../common_widgets/custom_loader/custom_loader.dart';
 import '../../../common_widgets/custom_rich_text/custom_rich_text.dart';
 import '../controller/auth_controller.dart';
-import 'inner_widgets/header_text.dart';
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
