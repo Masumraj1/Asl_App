@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double aspectRatio = screenWidth / (screenWidth * 1.6);
+    double aspectRatio = screenWidth / (screenWidth * 2.0);
 
     return Scaffold(
       backgroundColor: AppColors.white,
