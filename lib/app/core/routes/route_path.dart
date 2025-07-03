@@ -7,6 +7,8 @@ class RoutePath {
   static const String signInScreen = 'SignInScreen';
   static const String signUpScreen = 'SignUpScreen';
   static const String detailsScreen = 'DetailsScreen';
+  static const String addEditPostScreen = 'AddEditPostScreen';
+  static const String postListScreen = 'PostListScreen';
 
 
 

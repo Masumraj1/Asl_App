@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../view/screens/authentication/sign_in/sign_in_screen.dart';
 import '../../view/screens/authentication/sign_up/sign_up_screen.dart';
+import '../../view/screens/home/add/add_screen.dart';
+import '../../view/screens/home/add/model/post.dart';
 import '../../view/screens/home/details/details_screen.dart';
 import '../../view/screens/home/home_screen.dart';
+import '../../view/screens/home/post_list/post_list_screen.dart';
 import '../../view/screens/splash/splash_screen.dart';
 import '../enums/transition_type.dart';
 import 'route_path.dart';
@@ -56,6 +59,31 @@ class AppRouter {
 
           ),
         ),
+
+        ///======================= PostListScreen =======================
+        GoRoute(
+          name: RoutePath.postListScreen,
+          path: RoutePath.postListScreen.addBasePath,
+          pageBuilder: (context, state) => _buildPageWithAnimation(
+            child: PostListScreen(),
+            state: state,
+
+          ),
+        ),
+        ///======================= AddEditPostScreen =======================
+        GoRoute(
+          name: RoutePath.addEditPostScreen,
+          path: RoutePath.addEditPostScreen.addBasePath,
+          pageBuilder: (context, state) {
+            final post = state.extra as Post?; // null হলে add mode, না হলে edit mode
+            return MaterialPage(
+              child: AddEditPostScreen(post: post),
+              key: state.pageKey,
+            );
+          },
+        ),
+
+
 
         ///======================= DetailsScreen =======================
         GoRoute(

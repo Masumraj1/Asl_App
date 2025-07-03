@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../core/routes/route_path.dart';
 import '../../authentication/controller/auth_controller.dart';
 
 class SideDrawer extends StatelessWidget {
@@ -21,6 +23,20 @@ class SideDrawer extends StatelessWidget {
             ),
             child: Text(''),
           ),
+          ListTile(
+            leading: const Icon(Icons.add),
+            title: const Text('Add/Edit'),
+            onTap: () {
+              context.pushNamed(
+                RoutePath.postListScreen,
+
+              );
+
+            },
+          ),
+
+
+
           ListTile(
             leading: const Icon(Icons.logout),
             title: const Text('Logout'),
