@@ -5,16 +5,17 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_colors.dart';
-import '../../../core/constants/app_strings.dart';
-import '../../../core/custom_assets/assets.gen.dart';
+import '../../../core/enums/status.dart';
 import '../../../core/routes/route_path.dart';
 import '../../common_widgets/custom_appbar/custom_appbar.dart';
 import '../../common_widgets/custom_product_card/custom_product_card.dart';
 import '../../common_widgets/custom_text_field/custom_text_field.dart';
+import '../../common_widgets/empty_item/empty_item.dart';
+import '../../common_widgets/error_widget/error_widgets.dart';
 import 'controller/home_controller.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -28,12 +29,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+
     _scrollController.addListener(() {
-      if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
+      if (_scrollController.position.pixels >=
+          _scrollController.position.maxScrollExtent - 100) {
         if (homeController.hasMoreData && !homeController.isLoadingMore.value) {
-          homeController.getProduct(
-              page: homeController.currentPage + 1); // Load more data
+          homeController.getProduct(page: homeController.currentPage + 1);
         }
       }
     });
@@ -41,12 +42,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double aspectRatio = screenWidth / (screenWidth * 2.0);
+    final screenWidth = MediaQuery.of(context).size.width;
+    final aspectRatio = screenWidth / (screenWidth * 2.0);
 
     return Scaffold(
-      backgroundColor: AppColors.white,
       key: _scaffoldKey,
+      backgroundColor: AppColors.white,
       appBar: CustomAppBar(
         appBarContent: "Home",
         iconData: Icons.menu,
@@ -54,60 +55,63 @@ class _HomeScreenState extends State<HomeScreen> {
           _scaffoldKey.currentState?.openDrawer();
         },
       ),
-      drawer: SideDrawer(),
+      drawer: const SideDrawer(),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
         child: Obx(() {
-          if (homeController.isLoadingMore.value &&
-              homeController.productList.isEmpty) {
-            // TODO: replace with your shimmer loader if needed
+          final status = homeController.rxRequestStatus.value;
+
+          if (status == Status.loading && homeController.productList.isEmpty) {
             return const Center(child: CircularProgressIndicator());
           }
+
+          if (status == Status.error) {
+            return Center(
+              child: ErrorScreen(homeController: homeController),
+            );
+          }
+
+          if (homeController.searchedProducts.isEmpty) {
+            return EmptyItem();
+          }
+
           return Column(
             children: [
-              // Search Field
-              Expanded(
-                flex: 1,
-                child:    Row(
-                  children: [
-                    Expanded(
-                      flex: 8,
-                      child: CustomTextField(
-                        onChanged: homeController.filterProductByName,
-                        fillColor: AppColors.gray,
-                        fieldBorderColor: AppColors.white,
-                        hintText: "Search",
-                        prefixIcon: const Icon(Icons.search),
-                        inputTextStyle: const TextStyle(color: Colors.black),
-                      ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 8,
+                    child: CustomTextField(
+                      onChanged: homeController.filterProductByName,
+                      fillColor: AppColors.gray,
+                      fieldBorderColor: AppColors.white,
+                      hintText: "Search",
+                      prefixIcon: const Icon(Icons.search),
+                      inputTextStyle: const TextStyle(color: Colors.black),
                     ),
-                    Expanded(
-                      flex: 2,
-                      child: InkWell(
-                        onTap: () => _openSortSheet(context),
-                        child: Icon(Icons.filter_list_sharp),
-                      ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: InkWell(
+                      onTap: () => _openSortSheet(context),
+                      child: const Icon(Icons.filter_list_sharp),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               SizedBox(height: 24.h),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "Total items: ${homeController.searchedProducts.length}",
-                  style:
-                  TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 16.sp, fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(height: 24.h),
               Expanded(
-                flex: 9,
                 child: RefreshIndicator(
-                  onRefresh: ()async{
-                    await homeController.getProduct(page: 1);
-
-                  },
+                  onRefresh: () => homeController.getProduct(page: 1),
                   child: GridView.builder(
                     controller: _scrollController,
                     physics: const BouncingScrollPhysics(),
@@ -117,24 +121,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisSpacing: 10.h,
                       childAspectRatio: aspectRatio,
                     ),
-                    itemCount: homeController.searchedProducts.length + 1,
+                    itemCount: homeController.searchedProducts.length +
+                        (homeController.hasMoreData ? 1 : 0),
                     itemBuilder: (context, index) {
                       if (index == homeController.searchedProducts.length) {
-                        // Last item for loading indicator or no more items
-                        return Container(
-                          width: double.infinity,
-                          height: double.infinity,
-                          alignment: Alignment.center,
-                          padding: const EdgeInsets.all(8.0),
-                          child: homeController.isLoadingMore.value
-                              ? const CircularProgressIndicator()
-                              : const Text("No more photos!"),
+                        return const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Center(child: CircularProgressIndicator()),
                         );
                       }
-
-                      var data = homeController.searchedProducts[index];
+                      final data = homeController.searchedProducts[index];
                       return InkWell(
-                        onTap: (){
+                        onTap: () {
                           context.pushNamed(
                             RoutePath.detailsScreen,
                             extra: {
@@ -145,7 +143,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               'discount': data.discountPercentage.toString(),
                             },
                           );
-
                         },
                         child: CustomProductCard(
                           imageUrl: data.images.first,
@@ -165,7 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-  // ────────────────── bottom‑sheet sort selector ──────────────────
+
   void _openSortSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -199,3 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+
+
+

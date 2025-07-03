@@ -20,11 +20,10 @@ class HomeController extends GetxController {
 
   void setRxRequestStatus(Status value) => rxRequestStatus.value = value;
 
-  //======================Get Products==================
   Future<void> getProduct({int page = 1}) async {
-    if (isLoadingMore.value) return; // Prevent multiple simultaneous calls
+    if (isLoadingMore.value) return;
     isLoadingMore.value = true;
-    setRxRequestStatus(Status.loading);
+    if (page == 1) setRxRequestStatus(Status.loading);
 
     try {
       var response = await ApiClient.getData(
@@ -68,7 +67,6 @@ class HomeController extends GetxController {
     }
   }
 
-  //======================Search==================
   void filterProductByName(String query) {
     if (query.isEmpty) {
       searchedProducts.value = List<ProductList>.from(productList);
@@ -79,8 +77,6 @@ class HomeController extends GetxController {
           .toList();
     }
   }
-
-  // ──────────────── Sort Helpers ────────────────
 
   void sortByPriceAscending() {
     searchedProducts.sort((a, b) => a.price.compareTo(b.price));
