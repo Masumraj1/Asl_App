@@ -36,7 +36,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
       surfaceTintColor: AppColors.white,
       centerTitle: true,
       backgroundColor: widget.appBarBgColor,
-      automaticallyImplyLeading: false,
+      automaticallyImplyLeading: widget.iconData == null,  // true only if no iconData
       leading: widget.iconData != null
           ? IconButton(
         icon: Icon(widget.iconData, color: AppColors.black),
@@ -55,5 +55,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
         ),
       ),
     );
+
   }
 }

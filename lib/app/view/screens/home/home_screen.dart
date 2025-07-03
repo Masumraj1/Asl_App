@@ -2,10 +2,12 @@ import 'package:asl/app/view/screens/home/widgets/side_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_strings.dart';
 import '../../../core/custom_assets/assets.gen.dart';
+import '../../../core/routes/route_path.dart';
 import '../../common_widgets/custom_appbar/custom_appbar.dart';
 import '../../common_widgets/custom_product_card/custom_product_card.dart';
 import '../../common_widgets/custom_text_field/custom_text_field.dart';
@@ -101,39 +103,60 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 24.h),
               Expanded(
                 flex: 9,
-                child: GridView.builder(
-                  controller: _scrollController,
-                  physics: const BouncingScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10.w,
-                    mainAxisSpacing: 10.h,
-                    childAspectRatio: aspectRatio,
-                  ),
-                  itemCount: homeController.searchedProducts.length + 1,
-                  itemBuilder: (context, index) {
-                    if (index == homeController.searchedProducts.length) {
-                      // Last item for loading indicator or no more items
-                      return Container(
-                        width: double.infinity,
-                        height: double.infinity,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.all(8.0),
-                        child: homeController.isLoadingMore.value
-                            ? const CircularProgressIndicator()
-                            : const Text("No more photos!"),
-                      );
-                    }
+                child: RefreshIndicator(
+                  onRefresh: ()async{
+                    await homeController.getProduct(page: 1);
 
-                    var data = homeController.searchedProducts[index];
-                    return CustomProductCard(
-                      imageUrl: data.images.first,
-                      title: data.title,
-                      currentPrice: data.price.toString(),
-                      originalPrice: "30",
-                      discount: data.discountPercentage.toString(),
-                    );
                   },
+                  child: GridView.builder(
+                    controller: _scrollController,
+                    physics: const BouncingScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10.w,
+                      mainAxisSpacing: 10.h,
+                      childAspectRatio: aspectRatio,
+                    ),
+                    itemCount: homeController.searchedProducts.length + 1,
+                    itemBuilder: (context, index) {
+                      if (index == homeController.searchedProducts.length) {
+                        // Last item for loading indicator or no more items
+                        return Container(
+                          width: double.infinity,
+                          height: double.infinity,
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.all(8.0),
+                          child: homeController.isLoadingMore.value
+                              ? const CircularProgressIndicator()
+                              : const Text("No more photos!"),
+                        );
+                      }
+
+                      var data = homeController.searchedProducts[index];
+                      return InkWell(
+                        onTap: (){
+                          context.pushNamed(
+                            RoutePath.detailsScreen,
+                            extra: {
+                              'imageUrl': data.images.first,
+                              'title': data.title,
+                              'currentPrice': data.price.toString(),
+                              'originalPrice': "30",
+                              'discount': data.discountPercentage.toString(),
+                            },
+                          );
+
+                        },
+                        child: CustomProductCard(
+                          imageUrl: data.images.first,
+                          title: data.title,
+                          currentPrice: data.price.toString(),
+                          originalPrice: "30",
+                          discount: data.discountPercentage.toString(),
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
             ],
