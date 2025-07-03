@@ -11,6 +11,7 @@ import '../../../core/routes/routes.dart';
 import '../../common_widgets/custom_appbar/custom_appbar.dart';
 import '../../common_widgets/custom_product_card/custom_product_card.dart';
 import '../../common_widgets/custom_text_field/custom_text_field.dart';
+import 'controller/build_grid_loader.dart';
 import 'controller/home_controller.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -60,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Obx(() {
             if (homeController.isLoadingMore.value &&
                 homeController.productList.isEmpty) {
-              return _buildShimmerEffect();
+              return ShimmerGridLoader();
             }
             return Column(
               children: [
@@ -76,6 +77,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     fieldBorderColor: AppColors.gray,
                     hintText: "Search",
                     prefixIcon: const Icon(Icons.search),
+                  ),
+                ),
+                // Total items count
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Total items: ${homeController.searchedProducts.length}",
+                    style:
+                    TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
                   ),
                 ),
                 SizedBox(height: 24.h),
@@ -134,36 +144,4 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  /// **Shimmer Effect for Loading**
-  Widget _buildShimmerEffect() {
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2, // Number of columns in the grid
-        crossAxisSpacing: 10, // Space between columns
-        mainAxisSpacing: 10, // Space between rows
-        childAspectRatio: 0.75, // Aspect ratio of the items
-      ),
-      itemCount: 10, // Dummy shimmer items
-      itemBuilder: (context, index) {
-        return Card(
-          margin: const EdgeInsets.all(10),
-          child: Shimmer.fromColors(
-            baseColor: Colors.grey[300]!,
-            highlightColor: Colors.grey[100]!,
-            child: Column(
-              children: [
-                Container(
-                    height: 150, width: double.infinity, color: Colors.white),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                      height: 20, width: double.infinity, color: Colors.white),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
 }

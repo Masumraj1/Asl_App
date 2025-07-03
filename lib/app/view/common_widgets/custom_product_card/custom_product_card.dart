@@ -115,37 +115,37 @@ class CustomProductCard extends StatelessWidget {
                 SizedBox(
                   height: 8.h,
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(4.r),
-                      decoration: BoxDecoration(
-                          color: AppColors.yellow500,
-                          borderRadius: BorderRadius.all(Radius.circular(4.r))),
-                      child: const Icon(
-                        Icons.star,
-                        color: AppColors.whiteColor,
-                      ),
-                    ),
-                    CustomText(
-                      left: 4.w,
-                      top: 4.h,
-                      text: "$rating",
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12.sp,
-                      color: AppColors.gray700,
-                    ),
-                    CustomText(
-                      left: 7.w,
-                      top: 4.h,
-                      text: "($reviewsCount)",
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12.sp,
-                      color: AppColors.gray500,
-                    ),
-                  ],
-                )
+                // Row(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [
+                //     Container(
+                //       padding: EdgeInsets.all(4.r),
+                //       decoration: BoxDecoration(
+                //           color: AppColors.yellow500,
+                //           borderRadius: BorderRadius.all(Radius.circular(4.r))),
+                //       child: const Icon(
+                //         Icons.star,
+                //         color: AppColors.whiteColor,
+                //       ),
+                //     ),
+                //     CustomText(
+                //       left: 4.w,
+                //       top: 4.h,
+                //       text: "$rating",
+                //       fontWeight: FontWeight.w500,
+                //       fontSize: 12.sp,
+                //       color: AppColors.gray700,
+                //     ),
+                //     CustomText(
+                //       left: 7.w,
+                //       top: 4.h,
+                //       text: "($reviewsCount)",
+                //       fontWeight: FontWeight.w400,
+                //       fontSize: 12.sp,
+                //       color: AppColors.gray500,
+                //     ),
+                //   ],
+                // )
               ],
             ),
           ),
