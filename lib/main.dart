@@ -2,11 +2,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'app/core/utils/device_utils/device_utils.dart';
+import 'firebase_options.dart';
 import 'my_app.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  print("🔥 Firebase Initialized Successfully");
   DeviceUtils.lockDevicePortrait();
   runApp(const MyApp());
 
