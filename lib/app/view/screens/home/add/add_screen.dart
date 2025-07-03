@@ -6,7 +6,7 @@ import 'controller/post_controller.dart';
 import 'model/post.dart';
 
 class AddEditPostScreen extends StatefulWidget {
-  final Post? post; // null হলে Add mode, না হলে Edit mode
+  final Post? post;
 
   const AddEditPostScreen({this.post, Key? key}) : super(key: key);
 
