@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 
 import 'app/bindings/dependency_injection.dart';
-import 'app/core/routes.dart';
+import 'app/core/routes/routes.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

@@ -1,8 +1,10 @@
 
 
 import 'package:get/get.dart';
-import 'package:task360/app/core/route_path.dart';
-import 'package:task360/app/core/routes.dart';
+import 'package:task360/app/core/routes/routes.dart';
+
+import '../../../../core/routes/route_path.dart';
+
 
 
 

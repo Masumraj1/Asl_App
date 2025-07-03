@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:task360/app/utils/app_colors/app_colors.dart';
-import 'package:task360/app/utils/custom_assets/assets.gen.dart';
+
+import '../../../core/constants/app_colors.dart';
+import '../../../core/custom_assets/assets.gen.dart';
+
 
 
 
@@ -116,8 +118,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: obscureText
-                ? Assets.icons.ispassword.svg()
-                : Assets.icons.ispassword.svg(),
+                ? Assets.icons.eye.svg()
+                : Assets.icons.eyeOff.svg(color: AppColors.black),
           ),
         )
             : widget.suffixIcon,

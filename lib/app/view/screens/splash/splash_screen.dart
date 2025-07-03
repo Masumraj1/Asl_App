@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:task360/app/utils/app_colors/app_colors.dart';
-import 'package:task360/app/utils/app_strings/app_strings.dart';
-import 'package:task360/app/utils/custom_assets/assets.gen.dart';
+import 'package:task360/app/core/constants/app_strings.dart';
 import 'package:task360/app/view/common_widgets/custom_rich_text/custom_rich_text.dart';
 
 
+import '../../../core/constants/app_colors.dart';
+import '../../../core/utils/custom_assets/assets.gen.dart';
 import 'controller/splash_controller.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -22,7 +22,7 @@ class SplashScreen extends StatelessWidget {
           children: [
 
             Center(
-              child: Assets.images.appIcon.image(),
+              child: Assets.images.logo.image(),
             ),
 
 
@@ -33,7 +33,7 @@ class SplashScreen extends StatelessWidget {
               child: Center(
                 child: CustomRichText(
                   firstText: AppStrings.poweredBy,
-                  secondText: AppStrings.m360,
+                  secondText: AppStrings.aslSystem,
                   onTapAction: () {},
                 ),
               ),

@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:task360/app/core/route_path.dart';
-import 'package:task360/app/core/routes.dart';
-import 'package:task360/app/global/helper/toast_message/toast_message.dart';
-import 'package:task360/app/utils/app_strings/app_strings.dart';
+
+import '../../../../core/constants/app_strings.dart';
+import '../../../../core/routes/route_path.dart';
+import '../../../../core/routes/routes.dart';
+import '../../../../core/utils/toast_message/toast_message.dart';
+
 
 class AuthController extends GetxController {
   RxBool isRemember = false.obs;
