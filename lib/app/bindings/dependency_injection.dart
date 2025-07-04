@@ -2,8 +2,8 @@
 import 'package:get/get.dart';
 
 import '../view/screens/authentication/controller/auth_controller.dart';
-import '../view/screens/home/add/controller/post_controller.dart';
 import '../view/screens/home/controller/home_controller.dart';
+import '../view/screens/home/drawer/add/controller/post_controller.dart';
 import '../view/screens/splash/controller/splash_controller.dart';
 
 

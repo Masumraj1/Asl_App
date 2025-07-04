@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/routes/route_path.dart';
+import '../../../../../core/routes/route_path.dart';
 import '../add/controller/post_controller.dart';
 import '../add/model/post.dart';
 

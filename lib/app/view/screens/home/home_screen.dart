@@ -1,4 +1,5 @@
-import 'package:asl/app/view/screens/home/widgets/side_drawer.dart';
+import 'package:asl/app/view/screens/home/drawer/side_drawer.dart';
+import 'package:asl/app/view/screens/home/widgets/sort_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -43,11 +44,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final aspectRatio = screenWidth / (screenWidth * 2.0);
+    final aspectRatio = screenWidth / (screenWidth * 1.8);
 
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: AppColors.white,
+      //================Home Appbar=============
       appBar: CustomAppBar(
         appBarContent: "Home",
         iconData: Icons.menu,
@@ -55,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
           _scaffoldKey.currentState?.openDrawer();
         },
       ),
+      //=============Drawer===========
       drawer: const SideDrawer(),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
@@ -93,7 +96,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     flex: 2,
                     child: InkWell(
-                      onTap: () => _openSortSheet(context),
+                      onTap: () => SortSheet.show(context, homeController)
+                      ,
                       child: const Icon(Icons.filter_list_sharp),
                     ),
                   ),
@@ -111,6 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 24.h),
               Expanded(
                 child: RefreshIndicator(
+                  color: AppColors.gray,
                   onRefresh: () => homeController.getProduct(page: 1),
                   child: GridView.builder(
                     controller: _scrollController,
@@ -163,38 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _openSortSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-      ),
-      builder: (_) => Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              leading: const Icon(Icons.price_change),
-              title: const Text('দাম: কম → বেশি'),
-              onTap: () {
-                homeController.sortByPriceAscending();
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.star_rate),
-              title: const Text('রেটিং: বেশি → কম'),
-              onTap: () {
-                homeController.sortByRatingDescending();
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+
 }
 
 

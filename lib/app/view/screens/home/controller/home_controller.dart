@@ -5,7 +5,7 @@ import '../../../../core/enums/status.dart';
 import '../../../../services/api_check.dart';
 import '../../../../services/api_client.dart';
 import '../../../../services/app_url.dart';
-import '../model/product_model.dart';
+import '../drawer/model/product_model.dart';
 
 class HomeController extends GetxController {
   final rxRequestStatus = Status.loading.obs;
