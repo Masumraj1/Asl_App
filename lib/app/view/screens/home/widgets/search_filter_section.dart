@@ -22,8 +22,8 @@ class SearchFilterSection extends StatelessWidget {
           flex: 8,
           child: CustomTextField(
             onChanged: homeController.filterProductByName,
-            fillColor: AppColors.gray,
-            fieldBorderColor: AppColors.white,
+            // fillColor: AppColors.gray,
+            fieldBorderColor: AppColors.gray,
             hintText: "Search",
             prefixIcon: const Icon(Icons.search),
             inputTextStyle: const TextStyle(color: Colors.black),

@@ -23,6 +23,10 @@ class PostListScreen extends StatelessWidget {
       appBar: CustomAppBar(
         appBarContent: "Posts",
         showAddButton: true,
+        iconData: Icons.arrow_back,
+        onPressed: (){
+          context.pop();
+        },
         onAddPressed: () {
           context.pushNamed(RoutePath.addEditPostScreen);
         },

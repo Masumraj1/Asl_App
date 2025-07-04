@@ -67,7 +67,7 @@ class AppRouter {
           pageBuilder: (context, state) => _buildPageWithAnimation(
             child: PostListScreen(),
             state: state,
-
+           transitionType: TransitionType.detailsScreen
           ),
         ),
         ///======================= AddEditPostScreen =======================
@@ -79,7 +79,9 @@ class AppRouter {
             return MaterialPage(
               child: AddEditPostScreen(post: post),
               key: state.pageKey,
+
             );
+
           },
         ),
 

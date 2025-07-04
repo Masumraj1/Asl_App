@@ -102,6 +102,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       obscureText: widget.isPassword ? obscureText : false,
       validator: widget.validator,
       decoration: InputDecoration(
+
         errorMaxLines: 2,
         errorStyle: TextStyle(
           color: Colors.red,
@@ -124,18 +125,25 @@ class _CustomTextFieldState extends State<CustomTextField> {
         )
             : widget.suffixIcon,
         suffixIconColor: widget.suffixIconColor,
-        contentPadding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 14.h),
-        // BOTTOM BORDER ONLY
-        border: UnderlineInputBorder(
+        contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+
+
+        // ✅ CHANGED HERE: OutlineInputBorder for all borders
+        border: OutlineInputBorder(
+
+          borderRadius: BorderRadius.circular(widget.fieldBorderRadius),
           borderSide: BorderSide(color: widget.fieldBorderColor, width: 1),
         ),
-        enabledBorder: UnderlineInputBorder(
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(widget.fieldBorderRadius),
           borderSide: BorderSide(color: widget.fieldBorderColor, width: 1),
         ),
-        focusedBorder: UnderlineInputBorder(
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(widget.fieldBorderRadius),
           borderSide: BorderSide(color: widget.fieldBorderColor, width: 2),
         ),
       ),
+
 
     );
   }

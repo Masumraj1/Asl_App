@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -6,7 +7,8 @@ import '../model/post.dart';
 
 class PostController extends GetxController {
   var posts = <Post>[].obs;
-
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController bodyController = TextEditingController();
   final String _storageKey = 'posts_list';
 
   @override

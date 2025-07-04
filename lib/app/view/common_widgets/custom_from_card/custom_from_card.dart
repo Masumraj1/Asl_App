@@ -40,6 +40,7 @@ class CustomFromCard extends StatelessWidget {
           text: title,
           fontWeight: FontWeight.w500,
           fontSize: 12.sp,
+          bottom: 10.h,
         ),
         CustomTextField(
           maxLines: isPassword ? 1 : (maxLine ?? 1), // Ensure single line for password

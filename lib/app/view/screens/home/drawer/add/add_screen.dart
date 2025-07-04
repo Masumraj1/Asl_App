@@ -1,3 +1,7 @@
+import 'package:asl/app/core/constants/app_colors.dart';
+import 'package:asl/app/view/common_widgets/custom_appbar/custom_appbar.dart';
+import 'package:asl/app/view/common_widgets/custom_button/custom_button.dart';
+import 'package:asl/app/view/common_widgets/custom_from_card/custom_from_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
@@ -17,25 +21,22 @@ class AddEditPostScreen extends StatefulWidget {
 class _AddEditPostScreenState extends State<AddEditPostScreen> {
   final PostController postController = Get.find<PostController>();
 
-  final TextEditingController titleController = TextEditingController();
-  final TextEditingController bodyController = TextEditingController();
-
   final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
     if (widget.post != null) {
-      titleController.text = widget.post!.title;
-      bodyController.text = widget.post!.body;
+      postController.titleController.text = widget.post?.title ?? "";
+      postController.bodyController.text = widget.post?.body ?? "";
     }
   }
 
   void savePost() {
     if (!_formKey.currentState!.validate()) return;
 
-    final title = titleController.text.trim();
-    final body = bodyController.text.trim();
+    final title = postController.titleController.text.trim();
+    final body = postController.bodyController.text.trim();
 
     if (widget.post == null) {
       final newPost = Post(
@@ -56,11 +57,13 @@ class _AddEditPostScreenState extends State<AddEditPostScreen> {
     final isEditing = widget.post != null;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(isEditing ? 'Edit Post' : 'Add Post'),
-        centerTitle: true,
-        backgroundColor: Colors.deepPurple,
-        elevation: 4,
+      backgroundColor: AppColors.white,
+      appBar: CustomAppBar(
+        iconData: Icons.arrow_back,
+        onPressed: () {
+          context.pop();
+        },
+        appBarContent: isEditing ? 'Edit Post' : 'Add Post',
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
@@ -69,72 +72,38 @@ class _AddEditPostScreenState extends State<AddEditPostScreen> {
           child: Column(
             children: [
               // Title Field
-              TextFormField(
-                controller: titleController,
-                decoration: InputDecoration(
-                  labelText: 'Title',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  prefixIcon: const Icon(Icons.title),
-                ),
+              CustomFromCard(
+                title: "Title",
+                controller: postController.titleController,
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
                     return 'Please enter a title';
                   }
                   return null;
                 },
-                textInputAction: TextInputAction.next,
               ),
 
               const SizedBox(height: 20),
-
-              // Body Field
-              TextFormField(
-                controller: bodyController,
-                maxLines: 6,
-                decoration: InputDecoration(
-                  labelText: 'Body',
-                  alignLabelWithHint: true,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  prefixIcon: const Padding(
-                    padding: EdgeInsets.only(top: 12.0),
-                    child: Icon(Icons.article),
-                  ),
-                ),
+              CustomFromCard(
+                maxLine: 10,
+                title: "Body",
+                controller: postController.bodyController,
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
                     return 'Please enter body content';
                   }
                   return null;
                 },
-                textInputAction: TextInputAction.done,
               ),
+              // Body Field
 
               const SizedBox(height: 32),
 
-              // Save Button
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  onPressed: savePost,
-                  icon: Icon(isEditing ? Icons.update : Icons.add),
-                  label: Text(isEditing ? 'Update Post' : 'Add Post'),
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    backgroundColor: Colors.deepPurple,
-                    textStyle: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
+              CustomButton(
+                onTap: savePost,
+                title: isEditing ? 'Update Post' : 'Add Post',
               ),
+              // Save Button
             ],
           ),
         ),
