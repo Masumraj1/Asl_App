@@ -1,4 +1,9 @@
+import 'package:asl/app/core/constants/app_colors.dart';
+import 'package:asl/app/view/common_widgets/custom_appbar/custom_appbar.dart';
+import 'package:asl/app/view/common_widgets/custom_text/custom_text.dart';
+import 'package:asl/app/view/screens/home/drawer/post_list/widget/post_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,87 +19,38 @@ class PostListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Posts'),
-        centerTitle: true,
-        backgroundColor: Colors.deepPurple,
-        elevation: 4,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            tooltip: "Add New Post",
-            onPressed: () {
-              context.pushNamed(RoutePath.addEditPostScreen);
-            },
-          ),
-        ],
+      backgroundColor: AppColors.white,
+      appBar: CustomAppBar(
+        appBarContent: "Posts",
+        showAddButton: true,
+        onAddPressed: () {
+          context.pushNamed(RoutePath.addEditPostScreen);
+        },
       ),
       body: Obx(() {
         if (postController.posts.isEmpty) {
           return Center(
-            child: Text(
-              'No posts found',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.grey[600],
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          );
+              child: CustomText(
+            text: "No posts found",
+            fontWeight: FontWeight.w500,
+            fontSize: 20,
+            color: AppColors.black,
+          ));
         }
 
         return ListView.separated(
-          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+          padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
           itemCount: postController.posts.length,
-          separatorBuilder: (_, __) => const SizedBox(height: 12),
+          separatorBuilder: (_, __) => SizedBox(height: 12.h),
           itemBuilder: (context, index) {
             final Post post = postController.posts[index];
-            return GestureDetector(
-              onTap: () {
+            return PostCard(
+              title: post.title,
+              body: post.body,
+              onEditTap: () {
                 context.pushNamed(RoutePath.addEditPostScreen, extra: post);
+
               },
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                elevation: 3,
-                shadowColor: Colors.deepPurple.withOpacity(0.3),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        post.title,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.deepPurple,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        post.body,
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.grey[800],
-                          height: 1.3,
-                        ),
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 8),
-                      Align(
-                        alignment: Alignment.bottomRight,
-                        child: Icon(
-                          Icons.edit,
-                          color: Colors.deepPurple.shade200,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
             );
           },
         );
