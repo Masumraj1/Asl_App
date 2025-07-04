@@ -45,6 +45,8 @@ class _AddEditPostScreenState extends State<AddEditPostScreen> {
         body: body,
       );
       postController.addPost(newPost);
+      postController.titleController.clear();
+      postController.bodyController.clear();
     } else {
       postController.updatePost(widget.post!.id, title, body);
     }
