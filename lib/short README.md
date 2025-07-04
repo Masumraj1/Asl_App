@@ -1,13 +1,7 @@
-# 
-
-# asl_app
-
-
-
 
 This is a Flutter mobile application built as part of the ASL Systems Ltd.
-Flutter Developer take-home assignment. The app fetches and displays products/posts
-from a remote source, with features like search, filter, pagination, add/edit/delete
+Flutter Developer take-home assignment. The app fetches and displays products/posts 
+from a remote source, with features like search, filter, pagination, add/edit/delete 
 posts, and Firebase authentication integration.
 
 ---
@@ -68,9 +62,9 @@ posts, and Firebase authentication integration.
 2. Run `flutter pub get`
 3. Run `flutter run` on a connected device or simulator
 
----for ios
+  ---for ios
 1. cd ios
-2. pod install
+2. pod install  
 3. open Runner.xcworkspace
 
 ## State Management Approach
