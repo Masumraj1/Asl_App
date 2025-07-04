@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/constants/app_colors.dart';
-import '../../../core/custom_assets/assets.gen.dart';
+import '../../../core/utils/custom_assets/assets.gen.dart';
 
 
 
