@@ -4,18 +4,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../common_widgets/custom_text/custom_text.dart';
 
-
-
 class PostCard extends StatelessWidget {
   final String title;
   final String body;
   final VoidCallback? onEditTap;
+  final VoidCallback? onDeleteTap;
 
   const PostCard({
     Key? key,
     required this.title,
     required this.body,
     this.onEditTap,
+    this.onDeleteTap,
   }) : super(key: key);
 
   @override
@@ -47,14 +47,29 @@ class PostCard extends StatelessWidget {
               maxLines: 10,
             ),
             SizedBox(height: 8.h),
+
+            // ✅ Edit and Delete button row
             Align(
               alignment: Alignment.bottomRight,
-              child: GestureDetector(
-                onTap: onEditTap,
-                child: Icon(
-                  Icons.edit,
-                  color: Colors.deepPurple.shade200,
-                ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  GestureDetector(
+                    onTap: onEditTap,
+                    child: Icon(
+                      Icons.edit,
+                      color: Colors.deepPurple.shade200,
+                    ),
+                  ),
+                  SizedBox(width: 12.w),
+                  GestureDetector(
+                    onTap: onDeleteTap,
+                    child: Icon(
+                      Icons.delete,
+                      color: Colors.red.shade300,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

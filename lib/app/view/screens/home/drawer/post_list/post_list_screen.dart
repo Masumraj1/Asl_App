@@ -55,6 +55,29 @@ class PostListScreen extends StatelessWidget {
                 context.pushNamed(RoutePath.addEditPostScreen, extra: post);
 
               },
+              onDeleteTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text('Confirm Delete'),
+                    content: const Text('Are you sure you want to delete this post?'),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: const Text('Cancel'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          postController.deletePost(post.id);
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('Delete', style: TextStyle(color: Colors.red)),
+                      ),
+                    ],
+                  ),
+                );
+              },
+
             );
           },
         );

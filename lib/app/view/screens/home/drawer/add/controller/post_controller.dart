@@ -30,6 +30,10 @@ class PostController extends GetxController {
       savePostsToStorage(); // Save after update
     }
   }
+  void deletePost(String id) {
+    posts.removeWhere((p) => p.id == id);
+    savePostsToStorage(); // Delete করার পর Storage এ save হবে
+  }
 
   Future<void> savePostsToStorage() async {
     final prefs = await SharedPreferences.getInstance();
