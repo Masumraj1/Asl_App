@@ -1,5 +1,5 @@
 import 'package:asl/app/view/screens/home/drawer/side_drawer.dart';
-import 'package:asl/app/view/screens/home/widgets/sort_sheet.dart';
+import 'package:asl/app/view/screens/home/widgets/search_filter_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -10,7 +10,6 @@ import '../../../core/enums/status.dart';
 import '../../../core/routes/route_path.dart';
 import '../../common_widgets/custom_appbar/custom_appbar.dart';
 import '../../common_widgets/custom_product_card/custom_product_card.dart';
-import '../../common_widgets/custom_text_field/custom_text_field.dart';
 import '../../common_widgets/empty_item/empty_item.dart';
 import '../../common_widgets/error_widget/error_widgets.dart';
 import 'controller/home_controller.dart';
@@ -68,51 +67,34 @@ class _HomeScreenState extends State<HomeScreen> {
             return const Center(child: CircularProgressIndicator());
           }
 
+          //================Error Screen==============
           if (status == Status.error) {
             return Center(
               child: ErrorScreen(homeController: homeController),
             );
           }
-
+         //================Empty Screen==============
           if (homeController.searchedProducts.isEmpty) {
             return EmptyItem();
           }
 
           return Column(
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    flex: 8,
-                    child: CustomTextField(
-                      onChanged: homeController.filterProductByName,
-                      fillColor: AppColors.gray,
-                      fieldBorderColor: AppColors.white,
-                      hintText: "Search",
-                      prefixIcon: const Icon(Icons.search),
-                      inputTextStyle: const TextStyle(color: Colors.black),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: InkWell(
-                      onTap: () => SortSheet.show(context, homeController)
-                      ,
-                      child: const Icon(Icons.filter_list_sharp),
-                    ),
-                  ),
-                ],
-              ),
+              //==============Search Filter Section=============
+              SearchFilterSection(homeController: homeController),
               SizedBox(height: 24.h),
+              //================Total Items Show===========
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "Total items: ${homeController.searchedProducts.length}",
-                  style: TextStyle(
-                      fontSize: 16.sp, fontWeight: FontWeight.bold),
+                  style:
+                      TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(height: 24.h),
+
+              //===================+All Item SHow=============
               Expanded(
                 child: RefreshIndicator(
                   color: AppColors.gray,
@@ -167,10 +149,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
-
 }
-
-
 
 
